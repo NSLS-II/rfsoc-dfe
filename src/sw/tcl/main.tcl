@@ -63,7 +63,7 @@ proc doOnCreate {} {
   #addSources Sources
   fwfwk::printInfo "doOnCreate in src/sw/main.tcl - Adding LWIP 211"
   bsp setlib -name lwip211
-  bsp config api_mode "SOCK_API"
+  bsp config api_mode "SOCKET_API"
   bsp write
   bsp reload
   bsp regenerate
