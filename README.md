@@ -13,12 +13,14 @@ git clone --recurse-submodules https://github.com/jamead/zubpm
 Setup Environment:
 make env  (first time only)
 
+
 To build firmware
 make cfg=hw project  (Sets up project)
 
 make cfg=hw gui      (Open in Vivado)
 
 make cfg=hw build    (Builds bit file)
+
 
 
 To build Software
