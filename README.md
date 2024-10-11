@@ -8,7 +8,7 @@ https://fpgafw.pages.desy.de/docs-pub/fwk/index.html
 
 Clone with --recurse-submodules to get the FWK repos
 
-git clone --recurse-submodules https://github.com/jamead/zubpm
+git clone --recurse-submodules https://github.com/NSLS-II/rfsoc-dfe
 
 Setup Environment:
 make env  (first time only)
