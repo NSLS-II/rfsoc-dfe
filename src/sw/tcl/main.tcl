@@ -4,7 +4,7 @@ proc setSources {} {
   variable Sources
   ::fwfwk::printInfo "Set Sources..."
   # path relative to tcl file
-  #lappend Sources {../inc "includes"}
+  lappend Sources {../inc "includes"}
   lappend Sources {../src "sources"}
   #lappend Sources {../../common/inc "includes"}
   #lappend Sources {../../common/src "sources"}

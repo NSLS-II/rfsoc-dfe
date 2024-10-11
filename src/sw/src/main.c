@@ -48,6 +48,7 @@
 #include <stdio.h>
 #include "platform.h"
 #include "xil_printf.h"
+#include "xiicps.h"
 
 /* FreeRTOS includes */
 #include "FreeRTOS.h"
@@ -57,15 +58,45 @@
 
 #include "lwip/init.h"
 
+#include "rfsoc-dfe_defs.h"
+
+
+XIicPs IicPsInstance;	    // Instance of the IIC Device
+
+
+
 
 
 int main()
 {
 	int i;
+	float temp;
 	unsigned int *fpgabase;
     init_platform();
 
     print("Hello World\n\r");
+
+
+    init_i2c();
+
+    //read temperature sensors
+    i2c_set_port_expander(I2C_PORTEXP1_ADDR,1);
+    temp = read_i2c_temp(BRDTEMP0_ADDR);
+    printf("Board Temp0: %f\r\n", temp);
+    temp = read_i2c_temp(BRDTEMP1_ADDR);
+    printf("Board Temp1: %f\r\n", temp);
+    temp = read_i2c_temp(BRDTEMP2_ADDR);
+    printf("Board Temp2: %f\r\n", temp);
+    temp = read_i2c_temp(BRDTEMP3_ADDR);
+    printf("Board Temp3: %f\r\n", temp);
+    
+    //read voltage & currents from LTC2991 chips
+    for (i=0;i<5;i++) {
+ 	    i2c_set_port_expander(I2C_PORTEXP1_ADDR,4);
+ 	    i2c_configure_ltc2991();
+        i2c_get_ltc2991();
+        sleep(1);
+    }
 
     fpgabase = (unsigned int *)0xA0000000;
 
