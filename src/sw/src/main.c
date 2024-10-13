@@ -91,12 +91,16 @@ int main()
     printf("Board Temp3: %f\r\n", temp);
     
     //read voltage & currents from LTC2991 chips
-    for (i=0;i<5;i++) {
- 	    i2c_set_port_expander(I2C_PORTEXP1_ADDR,4);
- 	    i2c_configure_ltc2991();
-        i2c_get_ltc2991();
-        sleep(1);
-    }
+ 	i2c_set_port_expander(I2C_PORTEXP1_ADDR,4);
+ 	i2c_configure_ltc2991();
+    i2c_get_ltc2991();
+
+
+    //write LMK04828 PLL
+    //while (1) {
+       WriteLMK04828();
+    //   sleep(1);
+   // }
 
     fpgabase = (unsigned int *)0xA0000000;
 

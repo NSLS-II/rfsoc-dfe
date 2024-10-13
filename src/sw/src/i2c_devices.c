@@ -11,6 +11,149 @@
 extern XIicPs IicPsInstance;			/* Instance of the IIC Device */
 
 
+// clkin1 (10MHz) clkout11 = 5MHz distribution mode
+static const u32 lmk_values2[] = {
+0x000090,
+0x000000,
+0x000200,
+0x000306,
+0x0004D0,
+0x00055B,
+0x000600,
+0x000C51,
+0x000D04,
+0x010006,
+0x010155,
+0x010255,
+0x010300,
+0x010402,
+0x010500,
+0x010678,
+0x010755,
+0x010806,
+0x010955,
+0x010A55,
+0x010B00,
+0x010C02,
+0x010D00,
+0x010E78,
+0x010F55,
+0x011006,
+0x011155,
+0x011255,
+0x011300,
+0x011402,
+0x011500,
+0x0116F9,
+0x011700,
+0x011806,
+0x011955,
+0x011A55,
+0x011B00,
+0x011C02,
+0x011D00,
+0x011E79,
+0x011F03,
+0x012006,
+0x012155,
+0x012255,
+0x012300,
+0x012402,
+0x012500,
+0x012670,
+0x012700,
+0x012802,
+0x012955,
+0x012A55,
+0x012B00,
+0x012C02,
+0x012D00,
+0x012E70,
+0x012F60,
+0x013006,
+0x013155,
+0x013255,
+0x013300,
+0x013402,
+0x013500,
+0x013670,
+0x013700,
+0x013840,
+0x013903,
+0x013A04,
+0x013B00,
+0x013C00,
+0x013D08,
+0x013E03,
+0x013F00,
+0x0140F9,
+0x014100,
+0x014200,
+0x014301,
+0x0144FF,
+0x01457F,
+0x014612,
+0x014703,
+0x014802,
+0x014902,
+0x014A02,
+0x014B16,
+0x014C00,
+0x014D00,
+0x014EC0,
+0x014F7F,
+0x015003,
+0x015102,
+0x015200,
+0x015301,
+0x01544A,
+0x015500,
+0x0156C8,
+0x015700,
+0x015859,
+0x015900,
+0x015A72,
+0x015BD4,
+0x015C20,
+0x015D00,
+0x015E00,
+0x015F0B,
+0x016000,
+0x016139,
+0x016224,
+0x016300,
+0x016400,
+0x016501,
+0x0171AA,
+0x017202,
+0x017C15,
+0x017D33,
+0x016600,
+0x016700,
+0x016802,
+0x016959,
+0x016A20,
+0x016B00,
+0x016C00,
+0x016D00,
+0x016E1B,
+0x017360,
+0x1FFD00,
+0x1FFE00,
+0x1FFF53,
+0x000000,
+0x000000,
+0x000000,
+0x000000,
+0x000000,
+0x000000,
+0x000000,
+0x000000,
+};
+
+
+
+
 void init_i2c() {
     //s32 Status;
     XIicPs_Config *ConfigPtr;
@@ -142,6 +285,36 @@ void i2c_get_ltc2991()
   printf("reg3_temp:  %0.2f\r\n", i2c_ltc2991_reg3_temp());
   printf("----\r\n");
 }
+
+
+void WriteLMK04828()
+{
+   u8 buf[4] = {0};
+   u32 i;
+   //int bytesWritten, bytesRead;
+   //int voltage, cntrlword;
+   u32 regval;
+   u32 num_values = sizeof(lmk_values) / sizeof(lmk_values[0]);  // Get the number of elements in the array
+
+
+   i2c_set_port_expander(I2C_PORTEXP2_ADDR,8);
+   for (i=0; i<num_values; i++) {
+       regval =  lmk_values2[i];
+       buf[0] = 2;  //function ID, selects SS1 which is the LMK part
+       buf[1] = (char) ((regval & 0xFF0000) >> 16);
+       buf[2] = (char) ((regval & 0x00FF00) >> 8);
+       buf[3] = (char) (regval & 0xFF);
+       printf("Regval = 0x%x\t    B0 = %x    B1 = %x   B2 = %x\n",regval, buf[1], buf[2], buf[3]);
+       i2c_write(buf, 4, 0x2F);  //clk104 i2c address (SC181S602B)
+   
+   }
+   //bytesWritten = write(dev,buf,4);
+   //usleep(10000);
+   //bytesRead = read(dev,buf,4);
+   //printf("DAC Read : BytesRead:%d     B1: %x   B2: %x  B3: %x   B4: %x\n",bytesRead,buf[0],buf[1],buf[2],buf[3]);
+
+}
+
 
 
 
@@ -369,4 +542,6 @@ void iic_ltc2991_write8(u8 index, u8 addr, u8 data){
     iic_pe_disable(1, 2);
 }
 */
+
+
 
