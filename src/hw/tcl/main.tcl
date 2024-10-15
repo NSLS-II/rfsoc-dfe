@@ -44,6 +44,7 @@ proc doOnCreate {} {
   set_property default_lib      xil_defaultlib               [current_project]
    
   source ${TclPath}/system.tcl
+  source ${TclPath}/rfadc_clk_pll.tcl 
 
   addSources "Sources" 
 
