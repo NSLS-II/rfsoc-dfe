@@ -96,11 +96,9 @@ int main()
     i2c_get_ltc2991();
 
 
-    //write LMK04828 PLL
-    //while (1) {
-       WriteLMK04828();
-    //   sleep(1);
-   // }
+
+    //WriteLMK04828();
+
 
     fpgabase = (unsigned int *)0xA0000000;
 

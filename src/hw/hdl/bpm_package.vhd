@@ -143,32 +143,43 @@ type dma_params_type is record
 end record dma_params_type;
 
 
-
 component system is
   port (
-    pl_clk0 : out STD_LOGIC;
-    pl_resetn : out STD_LOGIC;
-    m_axi_awaddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    m_axi_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    m_axi_awvalid : out STD_LOGIC;
-    m_axi_awready : in STD_LOGIC;
-    m_axi_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    m_axi_wstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    m_axi_wvalid : out STD_LOGIC;
-    m_axi_wready : in STD_LOGIC;
-    m_axi_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    m_axi_bvalid : in STD_LOGIC;
-    m_axi_bready : out STD_LOGIC;
+    adc2_clk_clk_n : in STD_LOGIC;
+    adc2_clk_clk_p : in STD_LOGIC;
+    clk_adc2_0 : out STD_LOGIC;
+    m20_axis_0_tdata : out STD_LOGIC_VECTOR ( 159 downto 0 );
+    m20_axis_0_tready : in STD_LOGIC;
+    m20_axis_0_tvalid : out STD_LOGIC;
+    m2_axis_aclk_0 : in STD_LOGIC;
+    m2_axis_aresetn_0 : in STD_LOGIC;
     m_axi_araddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
     m_axi_arprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    m_axi_arvalid : out STD_LOGIC;
     m_axi_arready : in STD_LOGIC;
+    m_axi_arvalid : out STD_LOGIC;
+    m_axi_awaddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_axi_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    m_axi_awready : in STD_LOGIC;
+    m_axi_awvalid : out STD_LOGIC;
+    m_axi_bready : out STD_LOGIC;
+    m_axi_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    m_axi_bvalid : in STD_LOGIC;
     m_axi_rdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_axi_rready : out STD_LOGIC;
     m_axi_rresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     m_axi_rvalid : in STD_LOGIC;
-    m_axi_rready : out STD_LOGIC
+    m_axi_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_axi_wready : in STD_LOGIC;
+    m_axi_wstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axi_wvalid : out STD_LOGIC;
+    pl_clk0 : out STD_LOGIC;
+    pl_resetn : out STD_LOGIC;
+    sysref_in_diff_n : in STD_LOGIC;
+    sysref_in_diff_p : in STD_LOGIC;
+    vin2_01_v_n : in STD_LOGIC;
+    vin2_01_v_p : in STD_LOGIC
   );
-  end component system;
+end component system;
 
 
 

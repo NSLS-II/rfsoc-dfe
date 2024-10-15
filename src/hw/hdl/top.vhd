@@ -19,7 +19,24 @@ generic(
     SIM_MODE				: integer := 0
     );
   port (  
-    fp_led              : out std_logic_vector(7 downto 0)
+   
+    clk104_lmkin0_clk_p     : out std_logic; -- clk104 lmk04828 clkin0
+    clk104_lmkin0_clk_n     : out std_logic;
+    clk104_adc_refclk_p     : in std_logic;  -- clk104 lmk04828 Dout12
+    clk104_adc_refclk_n     : in std_logic; 
+    clk104_dac_refclk_p     : in std_logic;  -- clk104 lmk04828 Dout6
+    clk104_dac_refclk_n     : in std_logic;
+    clk104_pl_clk_p         : in std_logic;
+    clk104_pl_clk_n         : in std_logic;
+    clk104_pl_sysref_p      : in std_logic; -- clk104 AMS sysref SDOut3
+    clk104_pl_sysref_n      : in std_logic;   
+    
+    adc0_in_p               : in std_logic; 
+    adc0_in_n               : in std_logic;  
+  
+  
+    fp_led                  : out std_logic_vector(7 downto 0);
+    dbg                     : out std_logic_vector(19 downto 0)
 
   );
 end top;
@@ -37,9 +54,54 @@ architecture behv of top is
   signal reg_i      : t_addrmap_pl_regs_in;
   signal reg_o      : t_addrmap_pl_regs_out;
   
-
+  signal clk104_pl_clkin : std_logic;
+  signal clk104_pl_clk   : std_logic;
+  
+  signal adc0_axis_tdata        : std_logic_vector(159 downto 0); 
+  signal adc0_axis_tready       : std_logic;
+  signal adc0_axis_tvalid       : std_logic; 
+  signal rfadc_out_clk          : std_logic;
+  signal rfadc_axis_mmcm_clk    : std_logic;
+  signal rfadc_axis_clk         : std_logic;
+  
+  
+  attribute mark_debug     : string;
+  attribute mark_debug of adc0_axis_tdata: signal is "true"; 
+  attribute mark_debug of adc0_axis_tvalid: signal is "true"; 
 
 begin
+
+
+dbg(0) <= pl_clk0;
+dbg(1) <= '0';
+dbg(2) <= clk104_pl_clk;
+dbg(3) <= '0';
+dbg(4) <= rfadc_out_clk;
+dbg(5) <= '0';
+dbg(6) <= rfadc_axis_clk;
+dbg(19 downto 7) <= (others => '0'); 
+
+
+--drive the CLK104 PLL with 100MHz for now
+lmk_clkout : OBUFDS port map (O => clk104_lmkin0_clk_p, OB => clk104_lmkin0_clk_n, I => pl_clk0);   
+
+
+lmk_pl_clkin  : IBUFDS port map (O => clk104_pl_clkin, I => clk104_pl_clk_p, IB => clk104_pl_clk_n);
+pl_clkin_bufg : BUFG   port map (O => clk104_pl_clk, I => clk104_pl_clkin);
+
+rfadc_bufg    : BUFG   port map (O => rfadc_axis_clk, I => rfadc_axis_mmcm_clk);
+
+
+
+axisclk_adc: entity work.rfadc_clk_pll  
+  port map (
+    reset => not pl_resetn, 
+    clk_in1 => rfadc_out_clk, 
+    clk_out1 => rfadc_axis_mmcm_clk, 
+    locked => open  --adc_axis_pll_locked  
+);
+
+
 
 fp_led <= reg_o.FP_LEDS.val.data;
 --fp_led(7 downto 0) <= "01010101"; --gpio_leds_i(5 downto 0);
@@ -81,10 +143,23 @@ system_i: component system
     m_axi_wdata => m_axi4_m2s.wdata,
     m_axi_wready => m_axi4_s2m.wready,
     m_axi_wstrb => m_axi4_m2s.wstrb,
-    m_axi_wvalid => m_axi4_m2s.wvalid
+    m_axi_wvalid => m_axi4_m2s.wvalid,
+    
+    
+    adc2_clk_clk_p => clk104_adc_refclk_p,
+    adc2_clk_clk_n => clk104_adc_refclk_n,
+    sysref_in_diff_p => clk104_pl_sysref_p,
+    sysref_in_diff_n => clk104_pl_sysref_n,
+    vin2_01_v_p => adc0_in_p,
+    vin2_01_v_n => adc0_in_n, 
+    m2_axis_aclk_0 => rfadc_axis_clk,
+    m2_axis_aresetn_0 => pl_resetn,    
+    m20_axis_0_tready => '1',    
+    clk_adc2_0 => rfadc_out_clk, 
+    m20_axis_0_tdata => adc0_axis_tdata, 
+    m20_axis_0_tvalid => adc0_axis_tvalid
+
     );
-
-
 
 
 
