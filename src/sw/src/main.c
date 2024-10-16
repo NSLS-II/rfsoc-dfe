@@ -60,6 +60,13 @@
 
 #include "rfsoc-dfe_defs.h"
 
+#include "xparameters.h"
+#include "xrfdc.h"
+
+
+#define RFDC_DEVICE_ID  XPAR_XRFDC_0_DEVICE_ID  // This is the RFSoC RFDC device ID, check xparameters.h for correct value
+#define NUM_TILES 4
+
 
 XIicPs IicPsInstance;	    // Instance of the IIC Device
 
@@ -69,35 +76,86 @@ XIicPs IicPsInstance;	    // Instance of the IIC Device
 
 int main()
 {
-	int i;
+	int i, Tile;
 	float temp;
 	unsigned int *fpgabase;
+	int Status;
+    XRFdc RFdcInst;  // RFDC instance
+    XRFdc_Config *ConfigPtr;
+
+
     init_platform();
+
 
     print("Hello World\n\r");
 
-
     init_i2c();
 
-    //read temperature sensors
-    i2c_set_port_expander(I2C_PORTEXP1_ADDR,1);
-    temp = read_i2c_temp(BRDTEMP0_ADDR);
-    printf("Board Temp0: %f\r\n", temp);
-    temp = read_i2c_temp(BRDTEMP1_ADDR);
-    printf("Board Temp1: %f\r\n", temp);
-    temp = read_i2c_temp(BRDTEMP2_ADDR);
-    printf("Board Temp2: %f\r\n", temp);
-    temp = read_i2c_temp(BRDTEMP3_ADDR);
-    printf("Board Temp3: %f\r\n", temp);
-    
-    //read voltage & currents from LTC2991 chips
- 	i2c_set_port_expander(I2C_PORTEXP1_ADDR,4);
- 	i2c_configure_ltc2991();
-    i2c_get_ltc2991();
+     //read temperature sensors
+     i2c_set_port_expander(I2C_PORTEXP1_ADDR,1);
+     temp = read_i2c_temp(BRDTEMP0_ADDR);
+     printf("Board Temp0: %f\r\n", temp);
+     temp = read_i2c_temp(BRDTEMP1_ADDR);
+     printf("Board Temp1: %f\r\n", temp);
+     temp = read_i2c_temp(BRDTEMP2_ADDR);
+     printf("Board Temp2: %f\r\n", temp);
+     temp = read_i2c_temp(BRDTEMP3_ADDR);
+     printf("Board Temp3: %f\r\n", temp);
+
+     //read voltage & currents from LTC2991 chips
+  	i2c_set_port_expander(I2C_PORTEXP1_ADDR,4);
+  	i2c_configure_ltc2991();
+     i2c_get_ltc2991();
 
 
 
-    //WriteLMK04828();
+     WriteLMK04828();
+     sleep(1);
+
+
+
+
+     // Step 1: Initialize RFDC driver
+     ConfigPtr = XRFdc_LookupConfig(RFDC_DEVICE_ID);
+     if (ConfigPtr == NULL) {
+         printf("RFDC configuration lookup failed!\n");
+         return XST_FAILURE;
+     }
+
+     Status = XRFdc_CfgInitialize(&RFdcInst, ConfigPtr);
+     if (Status != XST_SUCCESS) {
+         printf("RFDC initialization failed!\n");
+         return XST_FAILURE;
+     }
+
+     // Step 2: Reset all 4 ADC and 4 DAC tiles
+      for (Tile = 0; Tile < NUM_TILES; Tile++) {
+          // Reset ADC Tile
+          Status = XRFdc_Reset(&RFdcInst, XRFDC_ADC_TILE, Tile);
+          if (Status != XST_SUCCESS) {
+              printf("Failed to reset ADC Tile %d!\n", Tile);
+              return XST_FAILURE;
+          }
+
+          // Reset DAC Tile
+          Status = XRFdc_Reset(&RFdcInst, XRFDC_DAC_TILE, Tile);
+          if (Status != XST_SUCCESS) {
+              printf("Failed to reset DAC Tile %d!\n", Tile);
+              return XST_FAILURE;
+          }
+      }
+
+     // Reset ADC Tile 0
+      Status = XRFdc_Reset(&RFdcInst, XRFDC_ADC_TILE, 0);
+      if (Status != XST_SUCCESS) {
+          printf("Failed to reset ADC Tile 0!\n");
+          return XST_FAILURE;
+      }
+
+
+
+
+
 
 
     fpgabase = (unsigned int *)0xA0000000;

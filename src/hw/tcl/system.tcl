@@ -1264,6 +1264,7 @@ Port;FD4A0000;FD4AFFFF;0|FPD;DPDMA;FD4C0000;FD4CFFFF;0|FPD;DDR_XMPU5_CFG;FD05000
   connect_bd_net -net m2_axis_aresetn_0_1 [get_bd_ports m2_axis_aresetn_0] [get_bd_pins usp_rf_data_converter_0/m2_axis_aresetn]
   connect_bd_net -net rst_ps8_0_100M_peripheral_aresetn [get_bd_pins rst_ps8_0_100M/peripheral_aresetn] [get_bd_pins usp_rf_data_converter_0/s_axi_aresetn]
   connect_bd_net -net usp_rf_data_converter_0_clk_adc2 [get_bd_ports clk_adc2_0] [get_bd_pins usp_rf_data_converter_0/clk_adc2]
+  connect_bd_net -net usp_rf_data_converter_0_irq [get_bd_pins usp_rf_data_converter_0/irq] [get_bd_pins zynq_ultra_ps_e_0/pl_ps_irq0]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_ports pl_clk0] [get_bd_pins rst_ps8_0_100M/slowest_sync_clk] [get_bd_pins smartconnect_0/aclk] [get_bd_pins usp_rf_data_converter_0/s_axi_aclk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_resetn0 [get_bd_ports pl_resetn] [get_bd_pins rst_ps8_0_100M/ext_reset_in] [get_bd_pins smartconnect_0/aresetn] [get_bd_pins zynq_ultra_ps_e_0/pl_resetn0]
 
