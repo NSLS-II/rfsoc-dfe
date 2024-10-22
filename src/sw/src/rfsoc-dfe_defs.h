@@ -1,5 +1,9 @@
 
 
+#include <metal/log.h>
+#include <metal/sys.h>
+
+
 #define BRDTEMP0_ADDR 0x48
 #define BRDTEMP1_ADDR 0x49
 #define BRDTEMP2_ADDR 0x4A
@@ -11,6 +15,13 @@
 
 
 
+void my_metal_default_log_handler(enum metal_log_level level,
+			       const char *format, ...);
+
+
+u32 InitRFdc(void);
+void GetRFdc_Status(void);
+void WriteLMK04828(void);
 void prog_ad9510(unsigned int *);
 void ltc2195_init(unsigned int *);
 
@@ -18,6 +29,7 @@ void psc_control_thread();
 void psc_status_thread();
 void psc_wvfm_thread();
 
+void read_board_temps();
 void init_i2c();
 s32 i2c_read(u8 *, u8, u8);
 s32 i2c_write(u8 *, u8, u8);
