@@ -82,5 +82,20 @@ addrmap pl_regs {
     field {} val[8];
   } FP_LEDS;
 
+  reg {
+    desc="ADC0 FIFO Data";
+    default sw = rw;
+    default hw = w;
+    field {} data[32];
+  } adc0fifo_dout @0x40;
+
+   reg {
+    desc="ADC0 FIFO Word Count";
+    default sw = rw;
+    default hw = rw;
+    field {swmod=true;} wdcnt[32];
+  } adc0fifo_wdcnt @0x44;
+
+
 
 };
