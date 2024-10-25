@@ -1,0 +1,106 @@
+//zbpm has 3 different IO memory spaces mapped to the PL fabric
+#define IOBUS_BASEADDR   0xA0000000
+#define FABUS_BASEADDR   0xA0010000
+#define LIVEBUS_BASEADDR 0xA0020000
+
+//base address of AXI-DMA Core for ADC Data
+#define AXIDMA_ADCBASEADDR  0xA0030000
+//base address of AXI-DMA Core for ADC Data
+#define AXIDMA_TBTBASEADDR  0xA0040000
+//base address of AXI-DMA Core for ADC Data
+#define AXIDMA_FABASEADDR  0xA0050000
+
+
+//base addresses of DMA destination
+#define ADC_DMA_DATA 0x10000000
+#define TBT_DMA_DATA 0x20000000
+#define FA_DMA_DATA  0x30000000
+
+
+//AXI DMA CORE REGISTERS
+#define S2MM_DMACR 12
+#define S2MM_DMASR 13
+#define S2MM_DA 18
+#define S2MM_LEN 22
+
+
+//IO Bus Registers
+#define PLL_LOCKED_REG 0
+#define FP_LEDS_REG 1
+#define AD9510_REG 2
+#define RF_DSA_REG 3
+#define ADC_IDLYVAL_REG 4
+#define ADC_IDLYSTR_REG 5
+#define ADC_FCOMMCM_REG 6
+#define INT_TRIG_ENB_REG 7  
+#define ADC_FIFOWREN_REG 8
+#define TRIG_EVRINT_SEL_REG 9
+#define ADC_SPI_REG 14
+#define GTH_RST_REG 15
+#define ADC_RAWCHA_REG 16
+#define ADC_RAWCHB_REG 17
+#define ADC_RAWCHC_REG 18
+#define ADC_RAWCHD_REG 19
+
+
+#define KX_REG 36
+#define KY_REG 37
+#define CHA_GAIN_REG 38
+#define CHB_GAIN_REG 39
+#define CHC_GAIN_REG 40
+#define CHD_GAIN_REG 41
+#define BBA_XOFF_REG 42
+#define BBA_YOFF_REG 43
+#define TBT_GATEDLY_REG 44
+#define TBT_GATEWID_REG 45
+
+#define TRIGTOBEAM_DLY_REG 72
+#define TRIGTOBEAM_THRESH_REG 73
+
+#define COARSE_TRIG_DLY_REG 77
+#define FINE_TRIG_DLY_REG 78
+#define EVR_DMA_TRIGNUM_REG 79
+
+#define DMA_SOFTTRIG_REG 80
+#define DMA_TESTDATAENB_REG 81
+#define DMA_FIFORST_REG 82
+#define DMA_ENABLE_REG 83
+#define DMA_ADCBURSTLEN_REG 84
+#define DMA_TBTBURSTLEN_REG 85
+#define DMA_FABURSTLEN_REG 86
+#define DMA_STATUS_REG 87
+
+#define FPGA_VER_REG 100
+#define VIVADO_VER_REG 101
+#define EVR_TS_NS_REG 102
+#define EVR_TS_S_REG 103
+#define EVR_TS_NS_LAT_REG 104
+#define EVR_TS_S_LAT_REG 105
+#define SA_TRIGNUM_REG 106
+#define DMA_TRIGCNT_REG 107
+
+#define SA_CHA_REG 110
+#define SA_CHB_REG 111
+#define SA_CHC_REG 112
+#define SA_CHD_REG 113
+#define SA_XPOS_REG 114
+#define SA_YPOS_REG 115
+#define SA_SUM_REG 117
+
+
+
+
+
+
+
+
+//Live Bus Registers
+
+#define TBTFIFO_DATA_REG 8 
+#define TBTFIFO_CNT_REG 9 
+#define TBTFIFO_RST_REG 10 
+#define TBTFIFO_STREAMENB_REG 11
+#define ADCFIFO_DATA_REG 16
+#define ADCFIFO_CNT_REG 17
+#define ADCFIFO_RST_REG 18
+#define ADCFIFO_STREAMENB_REG 19
