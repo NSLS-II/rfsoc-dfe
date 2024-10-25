@@ -244,7 +244,7 @@ proc create_root_design { parentCell } {
     CONFIG.ADC2_Outclk_Freq {125.000} \
     CONFIG.ADC2_PLL_Enable {true} \
     CONFIG.ADC2_Refclk_Freq {240.000} \
-    CONFIG.ADC_Data_Width20 {10} \
+    CONFIG.ADC_Data_Width20 {12} \
     CONFIG.ADC_Slice00_Enable {false} \
     CONFIG.ADC_Slice20_Enable {true} \
     CONFIG.ADC_Slice22_Enable {false} \

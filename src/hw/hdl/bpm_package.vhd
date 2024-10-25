@@ -148,7 +148,7 @@ component system is
     adc2_clk_clk_n : in STD_LOGIC;
     adc2_clk_clk_p : in STD_LOGIC;
     clk_adc2_0 : out STD_LOGIC;
-    m20_axis_0_tdata : out STD_LOGIC_VECTOR ( 159 downto 0 );
+    m20_axis_0_tdata : out STD_LOGIC_VECTOR ( 191 downto 0 );
     m20_axis_0_tready : in STD_LOGIC;
     m20_axis_0_tvalid : out STD_LOGIC;
     m2_axis_aclk_0 : in STD_LOGIC;

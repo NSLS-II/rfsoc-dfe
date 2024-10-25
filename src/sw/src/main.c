@@ -32,7 +32,8 @@ XRFdc RFdcInst;  // RFDC instance
 
 int main()
 {
-	int i=0;
+	u32 i=0;
+	u32 j=0;
 	time_t epoch_time;
 	struct tm *human_time;
 	char timebuf[80];
@@ -73,10 +74,46 @@ int main()
 
     i2c_get_ltc2991();
 
+ 
+    //Reset & Trigger the ADC0 FIFO
+    u32 wdcnt;
+    Xil_Out32(XPAR_M_AXI_BASEADDR + 0x48, 1);
+    sleep(1);
+    wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + 0x44);
+    xil_printf("FIFO Wdcnt = %d\r\n",wdcnt);
+    //Trigger
+    Xil_Out32(XPAR_M_AXI_BASEADDR + 0x4C, 1);
+    sleep(1);
+    wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + 0x44);
+    xil_printf("FIFO Wdcnt = %d\r\n",wdcnt);
 
+    u32 data;
+    s16 adcval;
+    //read out the fifo
+    for (i=0;i<100;i++) {
+    	for (j=0;j<8;j++) {
+    	    if (j<6) {	
+    	        data = Xil_In32(XPAR_M_AXI_BASEADDR + 0x40); 
+   	            adcval = (s16) ((data & 0xFFFF0000) >> 16);
+   	            xil_printf("%d\r\n",adcval>>2);
+   	            adcval = (s16) (data & 0xFFFF);       	
+                xil_printf("%d\r\n",adcval>>2);
+    	    }
+            else
+       	        data = Xil_In32(XPAR_M_AXI_BASEADDR + 0x40); 
+        }
+    }
+     
+    wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + 0x44);
+     xil_printf("FIFO Wdcnt = %d\r\n",wdcnt);    
+
+    
+    
     //blink some FP leds
     while (1) {
     	Xil_Out32(XPAR_M_AXI_BASEADDR + 0x20, i++);
+    	sleep(0.1);
+    	Xil_In32(XPAR_M_AXI_BASEADDR + 0x44);
     	//fpgabase[8] = i++;
     	xil_printf("%d:  %d\r\n",i,Xil_In32(XPAR_M_AXI_BASEADDR + 0x20)); //fpgabase[8]);
         sleep(1);

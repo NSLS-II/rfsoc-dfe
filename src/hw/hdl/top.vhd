@@ -47,6 +47,7 @@ architecture behv of top is
   
   signal pl_clk0      : std_logic;
   signal pl_resetn    : std_logic;
+  signal pl_reset     : std_logic;
   
   signal m_axi4_m2s : t_pl_regs_m2s;
   signal m_axi4_s2m : t_pl_regs_s2m;
@@ -57,7 +58,7 @@ architecture behv of top is
   signal clk104_pl_clkin : std_logic;
   signal clk104_pl_clk   : std_logic;
   
-  signal adc0_axis_tdata        : std_logic_vector(159 downto 0); 
+  signal adc0_axis_tdata        : std_logic_vector(191 downto 0); 
   signal adc0_axis_tready       : std_logic;
   signal adc0_axis_tvalid       : std_logic; 
   signal rfadc_out_clk          : std_logic;
@@ -68,6 +69,10 @@ architecture behv of top is
   attribute mark_debug     : string;
   attribute mark_debug of adc0_axis_tdata: signal is "true"; 
   attribute mark_debug of adc0_axis_tvalid: signal is "true"; 
+  attribute mark_debug of pl_reset: signal is "true";
+
+  --attribute mark_debug of reg_o: signal is "true";
+  --attribute mark_debug of reg_i: signal is "true";
 
 begin
 
@@ -81,6 +86,7 @@ dbg(5) <= '0';
 dbg(6) <= rfadc_axis_clk;
 dbg(19 downto 7) <= (others => '0'); 
 
+pl_reset <= not pl_resetn;
 
 --drive the CLK104 PLL with 100MHz for now
 lmk_clkout : OBUFDS port map (O => clk104_lmkin0_clk_p, OB => clk104_lmkin0_clk_n, I => pl_clk0);   
@@ -103,7 +109,7 @@ axisclk_adc: entity work.rfadc_clk_pll
 
 
 
-fp_led <= reg_o.FP_LEDS.val.data;
+fp_led <= reg_o.fp_leds.val.data;
 --fp_led(7 downto 0) <= "01010101"; --gpio_leds_i(5 downto 0);
 
 regs: pl_regs
@@ -118,6 +124,26 @@ regs: pl_regs
     pi_addrmap => reg_i,  
     po_addrmap => reg_o
   );
+
+
+
+store_adc0:  entity work.adc_data_rdout
+  port map (
+    sys_clk => pl_clk0, 
+    adc_clk => rfadc_axis_clk,  
+    sys_rst => pl_reset,
+    adc_data => adc0_axis_tdata,
+    fifo_trig => reg_o.adc0fifo_trig.data.data(0),  
+    fifo_rdstr => reg_o.adc0fifo_dout.data.swacc, 
+    fifo_dout => reg_i.adc0fifo_dout.data.data,  
+    fifo_rdcnt => reg_i.adc0fifo_wdcnt.data.data, 
+    fifo_rst => reg_i.adc0fifo_reset.data.data(0)
+ );
+
+
+
+
+
 
 
 system_i: component system

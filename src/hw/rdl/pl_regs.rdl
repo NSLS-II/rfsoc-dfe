@@ -80,21 +80,41 @@ addrmap pl_regs {
     default sw = rw;
     default hw = r;
     field {} val[8];
-  } FP_LEDS;
+  } fp_leds @0x20;
 
   reg {
     desc="ADC0 FIFO Data";
     default sw = rw;
     default hw = w;
+    default swacc=true;
+    default swmod=true;
     field {} data[32];
   } adc0fifo_dout @0x40;
 
    reg {
     desc="ADC0 FIFO Word Count";
-    default sw = rw;
-    default hw = rw;
-    field {swmod=true;} wdcnt[32];
+    default sw = r;
+    default hw = w;
+    field {} data[32];
   } adc0fifo_wdcnt @0x44;
+
+  reg {
+    desc="ADC0 FIFO Reset";
+    default sw = w;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;
+    field {} data[1];
+  } adc0fifo_reset @0x48;
+
+  reg {
+    desc="ADC0 FIFO Trig";
+    default sw = w;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;
+    field {} data[1];
+  } adc0fifo_trig @0x4C;
 
 
 

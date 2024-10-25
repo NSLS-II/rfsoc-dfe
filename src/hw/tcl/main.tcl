@@ -17,6 +17,7 @@ proc setSources {} {
   variable Sources 
   lappend Sources {"../hdl/top.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/bpm_package.vhd" "VHDL 2008"} 
+  lappend Sources {"../hdl/adc_data_rdout.vhd" "VHDL 2008"}
 
 
   lappend Sources {"../cstr/pins.xdc"  "XDC"}
@@ -46,7 +47,8 @@ proc doOnCreate {} {
    
   source ${TclPath}/system.tcl
   source ${TclPath}/rfadc_clk_pll.tcl 
-
+  source ${TclPath}/adc_fifo.tcl 
+  
   addSources "Sources" 
 
 }
