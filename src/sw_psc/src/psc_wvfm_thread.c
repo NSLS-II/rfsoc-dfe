@@ -81,11 +81,11 @@ void ReadADCWvfm(char *msg) {
     		if (j<6) {
                //2 samples in a 32 bit word
     		   chA = Xil_In32(XPAR_M_AXI_BASEADDR + 0x40);
-    		   *msg_u16ptr++ = (s16) ((chA & 0xFFFF0000) >> 16);
+    		   *msg_u16ptr++ = ((s16) ((chA & 0xFFFF0000) >> 16)) >> 2;
     		   *msg_u16ptr++ = (s16) ((rand() % 1000) - 500);  //1; //future chB
     		   *msg_u16ptr++ = (s16) ((rand() % 2000) - 1000); //future chC
     		   *msg_u16ptr++ = (s16) ((rand() % 3000) - 1500); //future chD
-    		   *msg_u16ptr++ = (s16) (chA & 0xFFFF);
+    		   *msg_u16ptr++ = ((s16) (chA & 0xFFFF)) >> 2;
     		   *msg_u16ptr++ = (s16) ((rand() % 1000) - 500); //future chB
     		   *msg_u16ptr++ = (s16) ((rand() % 2000) - 1000); //future chC
     		   *msg_u16ptr++ = (s16) ((rand() % 3000) - 1500); //future chD
