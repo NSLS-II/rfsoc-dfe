@@ -23,6 +23,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
+
+
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
 --library UNISIM;
@@ -76,7 +78,7 @@ END component;
   signal adc_enb_s        : std_logic;
   signal sample_num       : std_logic_vector(15 downto 0);
   signal fifo_rd_data_cnt : std_logic_vector(17 downto 0);
-
+  
 
   attribute mark_debug                 : string;
 
@@ -94,6 +96,7 @@ END component;
   attribute mark_debug of fifo_rst: signal is "true";
 
 begin
+
 
 
 fifo_rdcnt <= 14d"0" & fifo_rd_data_cnt;

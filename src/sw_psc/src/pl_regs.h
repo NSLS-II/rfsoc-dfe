@@ -24,6 +24,21 @@
 #define S2MM_LEN 22
 
 
+//AXI Registers
+#define ADCFIFO_RESET  0x40
+#define ADCFIFO_TRIG   0x44
+#define ADC0FIFO_DATA  0x50
+#define ADC0FIFO_WDCNT 0x54
+#define ADC1FIFO_DATA  0x60
+#define ADC1FIFO_WDCNT 0x64
+#define ADC2FIFO_DATA  0x70
+#define ADC2FIFO_WDCNT 0x74
+#define ADC3FIFO_DATA  0x80
+#define ADC3FIFO_WDCNT 0x84
+
+
+
+
 //IO Bus Registers
 #define PLL_LOCKED_REG 0
 #define FP_LEDS_REG 1
@@ -104,3 +119,6 @@
 #define ADCFIFO_CNT_REG 17
 #define ADCFIFO_RST_REG 18
 #define ADCFIFO_STREAMENB_REG 19
+
+
+

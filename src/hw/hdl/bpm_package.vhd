@@ -147,12 +147,39 @@ component system is
   port (
     adc2_clk_clk_n : in STD_LOGIC;
     adc2_clk_clk_p : in STD_LOGIC;
+    
+    vin2_01_v_n : in STD_LOGIC;
+    vin2_01_v_p : in STD_LOGIC;
+    vin2_23_v_n : in STD_LOGIC;
+    vin2_23_v_p : in STD_LOGIC;  
+    vin3_01_v_n : in STD_LOGIC;
+    vin3_01_v_p : in STD_LOGIC;
+    vin3_23_v_n : in STD_LOGIC;
+    vin3_23_v_p : in STD_LOGIC;    
+    
     clk_adc2_0 : out STD_LOGIC;
+    clk_adc3_0 : out STD_LOGIC;
+    
     m20_axis_0_tdata : out STD_LOGIC_VECTOR ( 191 downto 0 );
     m20_axis_0_tready : in STD_LOGIC;
     m20_axis_0_tvalid : out STD_LOGIC;
+    m22_axis_0_tdata : out STD_LOGIC_VECTOR ( 191 downto 0 );
+    m22_axis_0_tready : in STD_LOGIC;
+    m22_axis_0_tvalid : out STD_LOGIC;    
+    m30_axis_0_tdata : out STD_LOGIC_VECTOR ( 191 downto 0 );
+    m30_axis_0_tready : in STD_LOGIC;
+    m30_axis_0_tvalid : out STD_LOGIC;
+    m32_axis_0_tdata : out STD_LOGIC_VECTOR ( 191 downto 0 );
+    m32_axis_0_tready : in STD_LOGIC;
+    m32_axis_0_tvalid : out STD_LOGIC;    
+
+    
+    
     m2_axis_aclk_0 : in STD_LOGIC;
+    m3_axis_aclk_0 : in STD_LOGIC;
     m2_axis_aresetn_0 : in STD_LOGIC;
+    m3_axis_aresetn_0 : in STD_LOGIC;
+    
     m_axi_araddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
     m_axi_arprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
     m_axi_arready : in STD_LOGIC;
@@ -175,9 +202,8 @@ component system is
     pl_clk0 : out STD_LOGIC;
     pl_resetn : out STD_LOGIC;
     sysref_in_diff_n : in STD_LOGIC;
-    sysref_in_diff_p : in STD_LOGIC;
-    vin2_01_v_n : in STD_LOGIC;
-    vin2_01_v_p : in STD_LOGIC
+    sysref_in_diff_p : in STD_LOGIC
+
   );
 end component system;
 

@@ -61,7 +61,7 @@ void ReadADCWvfm(char *msg) {
     u32 i,j;
     u16 *msg_u16ptr;
     u32 *msg_u32ptr;
-    u32 chA;
+    u32 chA,chB,chC,chD;
 
 
 
@@ -80,26 +80,34 @@ void ReadADCWvfm(char *msg) {
     	for (j=0;j<8;j++) {
     		if (j<6) {
                //2 samples in a 32 bit word
-    		   chA = Xil_In32(XPAR_M_AXI_BASEADDR + 0x40);
+    		   chA = Xil_In32(XPAR_M_AXI_BASEADDR + ADC0FIFO_DATA);
+    		   chB = Xil_In32(XPAR_M_AXI_BASEADDR + ADC1FIFO_DATA);
+    		   chC = Xil_In32(XPAR_M_AXI_BASEADDR + ADC2FIFO_DATA);
+    		   chD = Xil_In32(XPAR_M_AXI_BASEADDR + ADC3FIFO_DATA);
     		   *msg_u16ptr++ = ((s16) ((chA & 0xFFFF0000) >> 16)) >> 2;
-    		   *msg_u16ptr++ = (s16) ((rand() % 1000) - 500);  //1; //future chB
-    		   *msg_u16ptr++ = (s16) ((rand() % 2000) - 1000); //future chC
-    		   *msg_u16ptr++ = (s16) ((rand() % 3000) - 1500); //future chD
+       		   *msg_u16ptr++ = ((s16) ((chB & 0xFFFF0000) >> 16)) >> 2;
+       		   *msg_u16ptr++ = ((s16) ((chC & 0xFFFF0000) >> 16)) >> 2;
+       		   *msg_u16ptr++ = ((s16) ((chD & 0xFFFF0000) >> 16)) >> 2;
     		   *msg_u16ptr++ = ((s16) (chA & 0xFFFF)) >> 2;
-    		   *msg_u16ptr++ = (s16) ((rand() % 1000) - 500); //future chB
-    		   *msg_u16ptr++ = (s16) ((rand() % 2000) - 1000); //future chC
-    		   *msg_u16ptr++ = (s16) ((rand() % 3000) - 1500); //future chD
+       		   *msg_u16ptr++ = ((s16) (chB & 0xFFFF)) >> 2;
+       		   *msg_u16ptr++ = ((s16) (chC & 0xFFFF)) >> 2;
+       		   *msg_u16ptr++ = ((s16) (chD & 0xFFFF)) >> 2;
     		}
-    		else //fifo has 2 blank 32 bit words
-      	        Xil_In32(XPAR_M_AXI_BASEADDR + 0x40);
+    		else {//fifo has 2 blank 32 bit words
+      	        Xil_In32(XPAR_M_AXI_BASEADDR + ADC0FIFO_DATA);
+      	        Xil_In32(XPAR_M_AXI_BASEADDR + ADC1FIFO_DATA);
+      	        Xil_In32(XPAR_M_AXI_BASEADDR + ADC2FIFO_DATA);
+      	        Xil_In32(XPAR_M_AXI_BASEADDR + ADC3FIFO_DATA);
+
+    		}
 
     	}
     }
 
     //printf("Resetting FIFO...\n");
-    Xil_Out32(XPAR_M_AXI_BASEADDR + 0x48, 1);
+    Xil_Out32(XPAR_M_AXI_BASEADDR + ADCFIFO_RESET, 1);
     usleep(100);
-    Xil_Out32(XPAR_M_AXI_BASEADDR + 0x48, 0);
+    Xil_Out32(XPAR_M_AXI_BASEADDR + ADCFIFO_RESET, 0);
 
 
 }
@@ -163,13 +171,13 @@ reconnect:
 
 	while (1) {
 
-		xil_printf("Wvfm: In main waveform loop...\r\n");
+		//xil_printf("Wvfm: In main waveform loop...\r\n");
 		loopcnt++;
 		vTaskDelay(pdMS_TO_TICKS(1000));
 
 		//read wordcnt
-		wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + 0x44);
-		xil_printf("wdcnt = %d\r\n",wdcnt);
+		wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + ADC0FIFO_WDCNT);
+		//xil_printf("wdcnt = %d\r\n",wdcnt);
 		if (wdcnt > 10000)  {
             xil_printf("Wvfm(%d) Sending Live Data...\r\n",loopcnt);
         	ReadADCWvfm(msgid51_buf);

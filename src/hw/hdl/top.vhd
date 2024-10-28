@@ -33,7 +33,12 @@ generic(
     
     adc0_in_p               : in std_logic; 
     adc0_in_n               : in std_logic;  
-  
+    adc1_in_p               : in std_logic; 
+    adc1_in_n               : in std_logic;      
+    adc2_in_p               : in std_logic; 
+    adc2_in_n               : in std_logic;  
+    adc3_in_p               : in std_logic; 
+    adc3_in_n               : in std_logic;     
   
     fp_led                  : out std_logic_vector(7 downto 0);
     dbg                     : out std_logic_vector(19 downto 0)
@@ -61,6 +66,16 @@ architecture behv of top is
   signal adc0_axis_tdata        : std_logic_vector(191 downto 0); 
   signal adc0_axis_tready       : std_logic;
   signal adc0_axis_tvalid       : std_logic; 
+  signal adc1_axis_tdata        : std_logic_vector(191 downto 0); 
+  signal adc1_axis_tready       : std_logic;
+  signal adc1_axis_tvalid       : std_logic; 
+  signal adc2_axis_tdata        : std_logic_vector(191 downto 0); 
+  signal adc2_axis_tready       : std_logic;
+  signal adc2_axis_tvalid       : std_logic;   
+  signal adc3_axis_tdata        : std_logic_vector(191 downto 0); 
+  signal adc3_axis_tready       : std_logic;
+  signal adc3_axis_tvalid       : std_logic;     
+  
   signal rfadc_out_clk          : std_logic;
   signal rfadc_axis_mmcm_clk    : std_logic;
   signal rfadc_axis_clk         : std_logic;
@@ -127,21 +142,57 @@ regs: pl_regs
 
   
 
-store_adc0:  entity work.adc_data_rdout
+adc0_fifo:  entity work.adc_data_rdout
   port map (
     sys_clk => pl_clk0, 
     adc_clk => rfadc_axis_clk,  
     sys_rst => pl_reset,
     adc_data => adc0_axis_tdata,
-    fifo_trig => reg_o.adc0fifo_trig.data.data(0),  
+    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
     fifo_rdstr => reg_o.adc0fifo_dout.data.swacc, 
     fifo_dout => reg_i.adc0fifo_dout.data.data,  
     fifo_rdcnt => reg_i.adc0fifo_wdcnt.data.data, 
-    fifo_rst => reg_o.adc0fifo_reset.data.data(0)
+    fifo_rst => reg_o.adcfifo_reset.data.data(0)
  );
 
-
-
+adc1_fifo:  entity work.adc_data_rdout
+  port map (
+    sys_clk => pl_clk0, 
+    adc_clk => rfadc_axis_clk,  
+    sys_rst => pl_reset,
+    adc_data => adc1_axis_tdata,
+    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
+    fifo_rdstr => reg_o.adc1fifo_dout.data.swacc, 
+    fifo_dout => reg_i.adc1fifo_dout.data.data,  
+    fifo_rdcnt => reg_i.adc1fifo_wdcnt.data.data, 
+    fifo_rst => reg_o.adcfifo_reset.data.data(0)
+ );
+ 
+ adc2_fifo:  entity work.adc_data_rdout
+  port map (
+    sys_clk => pl_clk0, 
+    adc_clk => rfadc_axis_clk,  
+    sys_rst => pl_reset,
+    adc_data => adc2_axis_tdata,
+    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
+    fifo_rdstr => reg_o.adc2fifo_dout.data.swacc, 
+    fifo_dout => reg_i.adc2fifo_dout.data.data,  
+    fifo_rdcnt => reg_i.adc2fifo_wdcnt.data.data, 
+    fifo_rst => reg_o.adcfifo_reset.data.data(0)
+ );
+ 
+adc3_fifo:  entity work.adc_data_rdout
+  port map (
+    sys_clk => pl_clk0, 
+    adc_clk => rfadc_axis_clk,  
+    sys_rst => pl_reset,
+    adc_data => adc3_axis_tdata,
+    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
+    fifo_rdstr => reg_o.adc3fifo_dout.data.swacc, 
+    fifo_dout => reg_i.adc3fifo_dout.data.data,  
+    fifo_rdcnt => reg_i.adc3fifo_wdcnt.data.data, 
+    fifo_rst => reg_o.adcfifo_reset.data.data(0)
+ );
 
 
 
@@ -150,7 +201,7 @@ system_i: component system
   port map (
     pl_clk0 => pl_clk0,
     pl_resetn => pl_resetn,
-     
+    -- axi-lite interface for register I/O    
     m_axi_araddr => m_axi4_m2s.araddr, 
     m_axi_arprot => m_axi4_m2s.arprot,
     m_axi_arready => m_axi4_s2m.arready,
@@ -170,21 +221,42 @@ system_i: component system
     m_axi_wready => m_axi4_s2m.wready,
     m_axi_wstrb => m_axi4_m2s.wstrb,
     m_axi_wvalid => m_axi4_m2s.wvalid,
-    
-    
+    --adc resets
+    m2_axis_aresetn_0 => pl_resetn,  
+    m3_axis_aresetn_0 => pl_resetn,
+    --adc clock input
     adc2_clk_clk_p => clk104_adc_refclk_p,
     adc2_clk_clk_n => clk104_adc_refclk_n,
     sysref_in_diff_p => clk104_pl_sysref_p,
     sysref_in_diff_n => clk104_pl_sysref_n,
+    --adc inputs
     vin2_01_v_p => adc0_in_p,
     vin2_01_v_n => adc0_in_n, 
-    m2_axis_aclk_0 => rfadc_axis_clk,
-    m2_axis_aresetn_0 => pl_resetn,    
-    m20_axis_0_tready => '1',    
+    vin2_23_v_p => adc1_in_p,
+    vin2_23_v_n => adc1_in_n, 
+    vin3_01_v_p => adc2_in_p,
+    vin3_01_v_n => adc2_in_n,         
+    vin3_23_v_p => adc3_in_p,
+    vin3_23_v_n => adc3_in_n,       
+    --clock output to drive axis clock via PLL  
     clk_adc2_0 => rfadc_out_clk, 
+    clk_adc3_0 => open,
+    --axis clock    
+    m2_axis_aclk_0 => rfadc_axis_clk,
+    m3_axis_aclk_0 => rfadc_axis_clk,
+    --axis data
+    m20_axis_0_tready => '1',    
     m20_axis_0_tdata => adc0_axis_tdata, 
-    m20_axis_0_tvalid => adc0_axis_tvalid
-
+    m20_axis_0_tvalid => adc0_axis_tvalid,
+    m22_axis_0_tready => '1',    
+    m22_axis_0_tdata => adc1_axis_tdata, 
+    m22_axis_0_tvalid => adc1_axis_tvalid,
+    m30_axis_0_tready => '1',    
+    m30_axis_0_tdata => adc2_axis_tdata, 
+    m30_axis_0_tvalid => adc2_axis_tvalid,    
+    m32_axis_0_tready => '1',    
+    m32_axis_0_tdata => adc3_axis_tdata, 
+    m32_axis_0_tvalid => adc3_axis_tvalid       
     );
 
 

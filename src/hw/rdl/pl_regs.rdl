@@ -82,6 +82,26 @@ addrmap pl_regs {
     field {} val[8];
   } fp_leds @0x20;
 
+
+  reg {
+    desc="ADC FIFO Reset";
+    default sw = w;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;
+    field {} data[1];
+  } adcfifo_reset @0x40;
+
+  reg {
+    desc="ADC FIFO Trig";
+    default sw = w;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;
+    field {} data[1];
+  } adcfifo_trig @0x44;
+
+
   reg {
     desc="ADC0 FIFO Data";
     default sw = rw;
@@ -89,32 +109,66 @@ addrmap pl_regs {
     default swacc=true;
     default swmod=true;
     field {} data[32];
-  } adc0fifo_dout @0x40;
+  } adc0fifo_dout @0x50;
 
    reg {
     desc="ADC0 FIFO Word Count";
     default sw = r;
     default hw = w;
     field {} data[32];
-  } adc0fifo_wdcnt @0x44;
+  } adc0fifo_wdcnt @0x54;
 
-  reg {
-    desc="ADC0 FIFO Reset";
-    default sw = w;
-    default hw = r;
+ reg {
+    desc="ADC1 FIFO Data";
+    default sw = rw;
+    default hw = w;
     default swacc=true;
     default swmod=true;
-    field {} data[1];
-  } adc0fifo_reset @0x48;
+    field {} data[32];
+  } adc1fifo_dout @0x60;
 
-  reg {
-    desc="ADC0 FIFO Trig";
-    default sw = w;
-    default hw = r;
+   reg {
+    desc="ADC1 FIFO Word Count";
+    default sw = r;
+    default hw = w;
+    field {} data[32];
+  } adc1fifo_wdcnt @0x64;
+  
+ reg {
+    desc="ADC2 FIFO Data";
+    default sw = rw;
+    default hw = w;
     default swacc=true;
     default swmod=true;
-    field {} data[1];
-  } adc0fifo_trig @0x4C;
+    field {} data[32];
+  } adc2fifo_dout @0x70;
+
+   reg {
+    desc="ADC2 FIFO Word Count";
+    default sw = r;
+    default hw = w;
+    field {} data[32];
+  } adc2fifo_wdcnt @0x74;
+
+ reg {
+    desc="ADC3 FIFO Data";
+    default sw = rw;
+    default hw = w;
+    default swacc=true;
+    default swmod=true;
+    field {} data[32];
+  } adc3fifo_dout @0x80;
+
+   reg {
+    desc="ADC3 FIFO Word Count";
+    default sw = r;
+    default hw = w;
+    field {} data[32];
+  } adc3fifo_wdcnt @0x84;
+  
+
+
+
 
 
 

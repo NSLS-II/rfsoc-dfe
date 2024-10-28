@@ -26,7 +26,7 @@ void set_fpleds(volatile unsigned int *fpgabase, int msgVal)  {
 
 
 void soft_trig(volatile unsigned int *fpgabase, int msgVal) {
-	Xil_Out32(XPAR_M_AXI_BASEADDR + 0x4C, msgVal);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ADCFIFO_TRIG, msgVal);
 }
 
 void set_atten(volatile unsigned int *fpgabase, int msgVal) {
