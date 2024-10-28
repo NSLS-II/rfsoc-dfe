@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2024-10-27 09:59:23 by mead-->
+<display version="2.0.0">
+  <width>200</width>
+  <height>200</height>
+  <background_color>
+    <color red="240" green="240" blue="240">
+    </color>
+  </background_color>
+  <actions>
+  </actions>
+  <grid_step_x>6</grid_step_x>
+  <grid_step_y>6</grid_step_y>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions>
+      <action type="open_display">
+        <file>rfdfe.opi</file>
+        <macros>
+          <PRI>LN</PRI>
+          <N>1</N>
+          <Sec>1</Sec>
+        </macros>
+        <target>replace</target>
+        <description>Open Display</description>
+      </action>
+    </actions>
+    <text>rfdfe</text>
+    <x>48</x>
+    <y>108</y>
+    <width>108</width>
+    <height>54</height>
+    <background_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </background_color>
+    <tooltip>$(actions)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_7</name>
+    <text>rfdfe Start Page</text>
+    <x>30</x>
+    <y>18</y>
+    <width>144</width>
+    <height>66</height>
+    <font>
+      <font family="Arial" style="BOLD" size="17.821782178217823">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="29" green="40" blue="184">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="135" green="181" blue="255">
+      </color>
+    </background_color>
+    <transparent>false</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+</display>
