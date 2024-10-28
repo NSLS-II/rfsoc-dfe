@@ -76,6 +76,19 @@ float i2c_ltc2991_vcc_3v3();
 float i2c_ltc2991_vcc_3v3_current();
 float i2c_ltc2991_vcc_0v85();
 float i2c_ltc2991_vcc_0v85_current();
+float i2c_ltc2991_vcc_adc_avcc();
+float i2c_ltc2991_vcc_adc_avcc_current();
+float i2c_ltc2991_vcc_adc_avccaux();
+float i2c_ltc2991_vcc_adc_avccaux_current();
+float i2c_ltc2991_vcc_dac_avcc();
+float i2c_ltc2991_vcc_dac_avcc_current();
+float i2c_ltc2991_vcc_dac_avccaux();
+float i2c_ltc2991_vcc_dac_avccaux_current();
+float i2c_ltc2991_vcc_dac_avtt();
+float i2c_ltc2991_vcc_dac_avtt_current();
+
+
+
 
 //void i2c_sfp_get_stats(struct *, u8);
 

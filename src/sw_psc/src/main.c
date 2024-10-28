@@ -318,10 +318,10 @@ int main()
 
 
     //read out the fifo
-    for (i=0;i<5;i++) {
-       trig_fifo();
-       sleep(1);
-    }
+    //for (i=0;i<5;i++) {
+    //   trig_fifo();
+    //   sleep(1);
+    // }
 
 
 

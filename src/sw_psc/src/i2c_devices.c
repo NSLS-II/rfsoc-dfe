@@ -124,24 +124,35 @@ void i2c_get_ltc2991()
 
   printf("LTC2991 Voltage/Current/Temperature Monitoring\r\n");
   printf("----\r\n");
-  printf("V 12.0:      %0.2f\r\n", i2c_ltc2991_vcc_vin());
-  printf("I 12.0:      %0.2f\r\n", i2c_ltc2991_vcc_vin_current());
-  printf("V 3.3:      %0.2f\r\n", i2c_ltc2991_vcc_3v3());
-  printf("I 3.3:      %0.2f\r\n", i2c_ltc2991_vcc_3v3_current());
-  printf("V 2.5:      %0.2f\r\n", i2c_ltc2991_vcc_2v5());
-  printf("I 2.5:      %0.2f\r\n", i2c_ltc2991_vcc_2v5_current());
-  printf("V 1.8:      %0.2f\r\n", i2c_ltc2991_vcc_1v8());
-  printf("I 1.8:      %0.2f\r\n", i2c_ltc2991_vcc_1v8_current());
-  printf("V 0.85:     %0.2f\r\n", i2c_ltc2991_vcc_0v85());
-  printf("I 0.85:     %0.2f\r\n", i2c_ltc2991_vcc_0v85_current());
-  printf("V 2.5 MGT:  %0.2f\r\n", i2c_ltc2991_vcc_mgt_2v5());
-  printf("I 2.5 MGT:  %0.2f\r\n", i2c_ltc2991_vcc_mgt_2v5_current());
-  printf("V 1.2 MGT:  %0.2f\r\n", i2c_ltc2991_vcc_mgt_1v2());
-  printf("I 1.2 MGT:  %0.2f\r\n", i2c_ltc2991_vcc_mgt_1v2_current());
-  printf("V 0.9 MGT:  %0.2f\r\n", i2c_ltc2991_vcc_mgt_0v9());
-  printf("I 0.9 MGT:  %0.2f\r\n", i2c_ltc2991_vcc_mgt_0v9_current());
-  printf("V 1.2 DDR:  %0.2f\r\n", i2c_ltc2991_vcc_1v2_ddr());
-  printf("I 1.2 DDR:  %0.2f\r\n", i2c_ltc2991_vcc_1v2_ddr_current());
+  printf("V 12.0:        %0.2f\r\n", i2c_ltc2991_vcc_vin());
+  printf("I 12.0:        %0.2f\r\n", i2c_ltc2991_vcc_vin_current());
+  printf("V 3.3:         %0.2f\r\n", i2c_ltc2991_vcc_3v3());
+  printf("I 3.3:         %0.2f\r\n", i2c_ltc2991_vcc_3v3_current());
+  printf("V 2.5:         %0.2f\r\n", i2c_ltc2991_vcc_2v5());
+  printf("I 2.5:         %0.2f\r\n", i2c_ltc2991_vcc_2v5_current());
+  printf("V 1.8:         %0.2f\r\n", i2c_ltc2991_vcc_1v8());
+  printf("I 1.8:         %0.2f\r\n", i2c_ltc2991_vcc_1v8_current());
+  printf("V 0.85:        %0.2f\r\n", i2c_ltc2991_vcc_0v85());
+  printf("I 0.85:        %0.2f\r\n", i2c_ltc2991_vcc_0v85_current());
+  printf("V 2.5 MGT:     %0.2f\r\n", i2c_ltc2991_vcc_mgt_2v5());
+  printf("I 2.5 MGT:     %0.2f\r\n", i2c_ltc2991_vcc_mgt_2v5_current());
+  printf("V 1.2 MGT:     %0.2f\r\n", i2c_ltc2991_vcc_mgt_1v2());
+  printf("I 1.2 MGT:     %0.2f\r\n", i2c_ltc2991_vcc_mgt_1v2_current());
+  printf("V 0.9 MGT:     %0.2f\r\n", i2c_ltc2991_vcc_mgt_0v9());
+  printf("I 0.9 MGT:     %0.2f\r\n", i2c_ltc2991_vcc_mgt_0v9_current());
+  printf("V 1.2 DDR:     %0.2f\r\n", i2c_ltc2991_vcc_1v2_ddr());
+  printf("I 1.2 DDR:     %0.2f\r\n", i2c_ltc2991_vcc_1v2_ddr_current());
+  printf("V ADC AVCC:    %0.2f\r\n", i2c_ltc2991_vcc_adc_avcc());
+  printf("I ADC AVCC:    %0.2f\r\n", i2c_ltc2991_vcc_adc_avcc_current());
+  printf("V ADC AVCCAUX: %0.2f\r\n", i2c_ltc2991_vcc_adc_avccaux());
+  printf("I ADC AVCCAUX: %0.2f\r\n", i2c_ltc2991_vcc_adc_avccaux_current());
+  printf("V DAC AVCC:    %0.2f\r\n", i2c_ltc2991_vcc_dac_avcc());
+  printf("I DAC AVCC:    %0.2f\r\n", i2c_ltc2991_vcc_dac_avcc_current());
+  printf("V DAC AVCCAUX: %0.2f\r\n", i2c_ltc2991_vcc_dac_avccaux());
+  printf("I DAC AVCCAUX: %0.2f\r\n", i2c_ltc2991_vcc_dac_avccaux_current());
+  printf("V DAC AVTT:    %0.2f\r\n", i2c_ltc2991_vcc_dac_avtt());
+  printf("I DAC AVTT:    %0.2f\r\n", i2c_ltc2991_vcc_dac_avtt_current());
+
 
   printf("reg1_temp:  %0.2f\r\n", i2c_ltc2991_reg1_temp());
   printf("reg2_temp:  %0.2f\r\n", i2c_ltc2991_reg2_temp());
@@ -198,11 +209,22 @@ void WriteLMK04828()
  *   V3/V4 - LTM1_VOUT3/VCC_2.5V
  *   V5/V6 - LTM1_VOUT2/VCC_MGT_1.2V
  *   V7/V8 - LTM1_VOUT1/VCC_MGT_0.9V
- * LTC2991[2] U37
+ * LTC2991[2] U41
  *   V1/V2 - LTM2_VOUT4/VCC_1.2V_DDR
  *   V3/V4 - LTM2_VOUT3/VCC_1.8V
  *   V5/V6 - LTM2_VOUT1/VCC_3.3V
  *   V7/V8 - LTM3_VOUT1/VCC_0.85V
+ * LTC2991[3] U61
+ *   V1/V2 - ADC_AVCC_BUS/ADC_AVCC
+ *   V3/V4 - ADC_AVCC_AUX_BUS/ADC_AVCC_AUX
+ * LTC2991[4] U62
+ *   V1/V2 - DAC_AVCC_BUS/DAC_AVCC
+ *   V3/V4 - DAC_AVCC_AUX_BUS/DAC_AVCC_AUX
+ *   V5/V6 - DAC AVTT_BUS/DAC_AVTT
+ *
+ *
+ *
+ *
 */
 
 
@@ -220,6 +242,8 @@ void i2c_configure_ltc2991() {
     txBuf[1] = 0x11;
     i2c_write(txBuf, 3, 0x49);
     i2c_write(txBuf, 3, 0x4A);
+    i2c_write(txBuf, 3, 0x4B);
+    i2c_write(txBuf, 3, 0x4C);
 
     // reg 8 bit 4 controls one-shot or continuous measurement (1 = cont)
     txBuf[0] = 0x08;
@@ -227,6 +251,8 @@ void i2c_configure_ltc2991() {
     i2c_write(txBuf,2,0x48);
     i2c_write(txBuf,2,0x49);
     i2c_write(txBuf,2,0x4A);
+    i2c_write(txBuf,2,0x4B);
+    i2c_write(txBuf,2,0x4C);
 
     // reg 1 is status/control, 0xF0 enables ch 1-8 measurements
     txBuf[0] = 0x01;
@@ -234,6 +260,8 @@ void i2c_configure_ltc2991() {
     i2c_write(txBuf,2,0x48);
     i2c_write(txBuf,2,0x49);
     i2c_write(txBuf,2,0x4A);
+    i2c_write(txBuf,2,0x4B);
+    i2c_write(txBuf,2,0x4C);
 
 }
 
@@ -372,6 +400,48 @@ float i2c_ltc2991_vcc_0v85() {
 float i2c_ltc2991_vcc_0v85_current() {
     return (conv_volts_diff / conv_r_sense) * i2c_ltc2991_voltage(0x49, 7);
 }
+
+float i2c_ltc2991_vcc_adc_avcc() {
+    return conv_volts_se * i2c_ltc2991_voltage(0x4B, 0);
+}
+
+float i2c_ltc2991_vcc_adc_avcc_current() {
+    return (conv_volts_diff / conv_r_sense) * i2c_ltc2991_voltage(0x4B, 1);
+}
+
+float i2c_ltc2991_vcc_adc_avccaux() {
+    return conv_volts_se * i2c_ltc2991_voltage(0x4B, 2);
+}
+
+float i2c_ltc2991_vcc_adc_avccaux_current() {
+    return (conv_volts_diff / conv_r_sense) * i2c_ltc2991_voltage(0x4B, 3);
+}
+
+float i2c_ltc2991_vcc_dac_avcc() {
+    return conv_volts_se * i2c_ltc2991_voltage(0x4C, 0);
+}
+
+float i2c_ltc2991_vcc_dac_avcc_current() {
+    return (conv_volts_diff / conv_r_sense) * i2c_ltc2991_voltage(0x4C, 1);
+}
+
+float i2c_ltc2991_vcc_dac_avccaux() {
+    return conv_volts_se * i2c_ltc2991_voltage(0x4C, 2);
+}
+
+float i2c_ltc2991_vcc_dac_avccaux_current() {
+    return (conv_volts_diff / conv_r_sense) * i2c_ltc2991_voltage(0x4C, 3);
+}
+
+float i2c_ltc2991_vcc_dac_avtt() {
+    return conv_volts_se * i2c_ltc2991_voltage(0x4C, 4);
+}
+
+float i2c_ltc2991_vcc_dac_avtt_current() {
+    return (conv_volts_diff / conv_r_sense) * i2c_ltc2991_voltage(0x4C, 5);
+}
+
+
 
 /*
 u16 iic_ltc2991_read16(u8 index, u8 addr){
