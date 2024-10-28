@@ -1,7 +1,7 @@
 
 #include <sleep.h>
 #include "netif/xadapter.h"
-//#include "platform_config.h"
+#include "platform.h"
 #include "xil_printf.h"
 #include "lwip/init.h"
 #include "lwip/inet.h"
@@ -154,10 +154,10 @@ void main_thread(void *p)
 	vTaskDelay(pdMS_TO_TICKS(100));
 
     // Start the PSC Status Thread.  Handles incoming commands from IOC
-    xil_printf("\r\n");
-    sys_thread_new("psc_status_thread", psc_status_thread, 0,
-		THREAD_STACKSIZE,
-		DEFAULT_THREAD_PRIO);
+    //xil_printf("\r\n");
+    //sys_thread_new("psc_status_thread", psc_status_thread, 0,
+	//	THREAD_STACKSIZE,
+	//	DEFAULT_THREAD_PRIO);
 
 
     // Delay for 100ms
@@ -224,7 +224,49 @@ s32 init_sysmon() {
     return XST_SUCCESS;
 }
 
+void trig_fifo()
+{
+	int i,j;
+	u32 data;
+	s16 adcval;
+	u32 wdcnt;
 
+	//Reset & Trigger the ADC0 FIFO
+	Xil_Out32(XPAR_M_AXI_BASEADDR + 0x48, 1);
+	usleep(10);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + 0x48, 0);
+	usleep(10);
+	wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + 0x44);
+	xil_printf("FIFO Wdcnt = %d\r\n",wdcnt);
+	//Trigger
+	Xil_Out32(XPAR_M_AXI_BASEADDR + 0x4C, 1);
+	usleep(100);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + 0x4C, 0);	
+	wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + 0x44);
+	xil_printf("FIFO Wdcnt = %d\r\n",wdcnt);
+
+    for (i=0;i<100;i++) {
+    	for (j=0;j<8;j++) {
+    	    if (j<6) {
+    	        data = Xil_In32(XPAR_M_AXI_BASEADDR + 0x40);
+   	            adcval = (s16) ((data & 0xFFFF0000) >> 16);
+   	            xil_printf("%d ",adcval>>2);
+   	            adcval = (s16) (data & 0xFFFF);
+                xil_printf("%d ",adcval>>2);
+    	    }
+            else
+       	        data = Xil_In32(XPAR_M_AXI_BASEADDR + 0x40);
+        }
+    }
+
+
+    wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + 0x44);
+    xil_printf("FIFO Wdcnt = %d\r\n\r\n",wdcnt);
+
+
+
+
+}
 
 
 
@@ -232,7 +274,6 @@ int main()
 {
 
 	u32 i=0;
-	u32 j=0;
 	time_t epoch_time;
 	struct tm *human_time;
 	char timebuf[80];
@@ -273,48 +314,22 @@ int main()
     i2c_get_ltc2991();
 
 
-    //Reset & Trigger the ADC0 FIFO
-    u32 wdcnt;
-    Xil_Out32(XPAR_M_AXI_BASEADDR + 0x48, 1);
-    sleep(1);
-    wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + 0x44);
-    xil_printf("FIFO Wdcnt = %d\r\n",wdcnt);
-    //Trigger
-    Xil_Out32(XPAR_M_AXI_BASEADDR + 0x4C, 1);
-    sleep(1);
-    wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + 0x44);
-    xil_printf("FIFO Wdcnt = %d\r\n",wdcnt);
 
-    u32 data;
-    s16 adcval;
+
+
     //read out the fifo
-    for (i=0;i<100;i++) {
-    	for (j=0;j<8;j++) {
-    	    if (j<6) {
-    	        data = Xil_In32(XPAR_M_AXI_BASEADDR + 0x40);
-   	            adcval = (s16) ((data & 0xFFFF0000) >> 16);
-   	            xil_printf("%d\r\n",adcval>>2);
-   	            adcval = (s16) (data & 0xFFFF);
-                xil_printf("%d\r\n",adcval>>2);
-    	    }
-            else
-       	        data = Xil_In32(XPAR_M_AXI_BASEADDR + 0x40);
-        }
+    for (i=0;i<5;i++) {
+       trig_fifo();
+       sleep(1);
     }
-
-    wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + 0x44);
-     xil_printf("FIFO Wdcnt = %d\r\n",wdcnt);
 
 
 
     //blink some FP leds
-    while (1) {
+    for (i=0;i<100;i++) {
     	Xil_Out32(XPAR_M_AXI_BASEADDR + 0x20, i++);
     	sleep(0.1);
-    	Xil_In32(XPAR_M_AXI_BASEADDR + 0x44);
-    	//fpgabase[8] = i++;
     	xil_printf("%d:  %d\r\n",i,Xil_In32(XPAR_M_AXI_BASEADDR + 0x20)); //fpgabase[8]);
-        sleep(1);
     }
 
 

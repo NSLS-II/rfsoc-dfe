@@ -91,6 +91,7 @@ END component;
   attribute mark_debug of fifo_rd_data_cnt: signal is "true";
   attribute mark_debug of adc_enb_sr: signal is "true";
   attribute mark_debug of adc_enb_s: signal is "true";
+  attribute mark_debug of fifo_rst: signal is "true";
 
 begin
 

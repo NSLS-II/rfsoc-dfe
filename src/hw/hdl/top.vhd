@@ -125,7 +125,7 @@ regs: pl_regs
     po_addrmap => reg_o
   );
 
-
+  
 
 store_adc0:  entity work.adc_data_rdout
   port map (
@@ -137,7 +137,7 @@ store_adc0:  entity work.adc_data_rdout
     fifo_rdstr => reg_o.adc0fifo_dout.data.swacc, 
     fifo_dout => reg_i.adc0fifo_dout.data.data,  
     fifo_rdcnt => reg_i.adc0fifo_wdcnt.data.data, 
-    fifo_rst => reg_i.adc0fifo_reset.data.data(0)
+    fifo_rst => reg_o.adc0fifo_reset.data.data(0)
  );
 
 
