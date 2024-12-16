@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-10-28 15:15:04 by mead-->
+<!--Saved on 2024-12-15 09:40:44 by mead-->
 <display version="2.0.0">
   <name>$(PRI):$(Sec)-BPM$(N)LN_LTB_bpm_Ctrl</name>
   <width>1300</width>
@@ -67,284 +67,2284 @@ $(pv_value)</tooltip>
       </color>
     </border_color>
   </widget>
-  <widget type="xyplot" version="3.0.0">
-    <name>X/Y Plot</name>
-    <x>54</x>
+  <widget type="tabs" version="2.0.0">
+    <name>Tabs</name>
+    <tabs>
+      <tab>
+        <name>Status</name>
+        <children>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_8</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Temp:AfeSense0-I</pv_name>
+            <x>204</x>
+            <y>351</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_9</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Temp:DfeSense3-I</pv_name>
+            <x>204</x>
+            <y>258</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_10</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Temp:DfeSense2-I</pv_name>
+            <x>204</x>
+            <y>239</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_11</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Temp:DfeSense1-I</pv_name>
+            <x>204</x>
+            <y>220</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_174</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Temp:DfeSense0-I</pv_name>
+            <x>204</x>
+            <y>201</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_175</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Temp:FpgaDie-I</pv_name>
+            <x>204</x>
+            <y>172</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_97</name>
+            <text>Temperatures</text>
+            <x>100</x>
+            <y>110</y>
+            <width>209</width>
+            <font>
+              <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+              </font>
+            </font>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_98</name>
+            <text>+12V Input</text>
+            <x>382</x>
+            <y>161</y>
+            <width>85</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_99</name>
+            <text>+1.8V
+</text>
+            <x>409</x>
+            <y>221</y>
+            <width>58</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_176</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:VinV-I</pv_name>
+            <x>481</x>
+            <y>161</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_100</name>
+            <text>+3.3V</text>
+            <x>409</x>
+            <y>180</y>
+            <width>58</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_198</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:VinI-I</pv_name>
+            <x>580</x>
+            <y>161</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_199</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V3_3V-I</pv_name>
+            <x>481</x>
+            <y>180</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_200</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V3_3I-I</pv_name>
+            <x>580</x>
+            <y>180</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_201</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V2_5V-I</pv_name>
+            <x>481</x>
+            <y>201</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_202</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V2_5I-I</pv_name>
+            <x>580</x>
+            <y>201</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_203</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V1_8V-I</pv_name>
+            <x>481</x>
+            <y>220</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_204</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V1_8I-I</pv_name>
+            <x>580</x>
+            <y>220</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_101</name>
+            <text>+2.5V
+</text>
+            <x>409</x>
+            <y>202</y>
+            <width>58</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_205</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V1_2DDRV-I</pv_name>
+            <x>481</x>
+            <y>241</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_206</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V1_2DDRI-I</pv_name>
+            <x>580</x>
+            <y>241</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_102</name>
+            <text>+1.2V DDR AVtt</text>
+            <x>397</x>
+            <y>241</y>
+            <width>70</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_207</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V0_85V-I</pv_name>
+            <x>481</x>
+            <y>261</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_208</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V0_85I-I</pv_name>
+            <x>580</x>
+            <y>261</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_103</name>
+            <text>+0.85V</text>
+            <x>397</x>
+            <y>261</y>
+            <width>70</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_209</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V2_5MGTV-I</pv_name>
+            <x>481</x>
+            <y>293</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_210</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V2_5MGTI-I</pv_name>
+            <x>580</x>
+            <y>293</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_104</name>
+            <text>+2.5V MGT</text>
+            <x>385</x>
+            <y>293</y>
+            <width>82</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_211</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V1_2MGTV-I</pv_name>
+            <x>481</x>
+            <y>312</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_212</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V1_2MGTI-I</pv_name>
+            <x>580</x>
+            <y>312</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_105</name>
+            <text>+1.2V MGT</text>
+            <x>385</x>
+            <y>312</y>
+            <width>82</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_213</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V0_9MGTV-I</pv_name>
+            <x>481</x>
+            <y>331</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_214</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:V0_9MGTI-I</pv_name>
+            <x>580</x>
+            <y>331</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_106</name>
+            <text>+0.9V MGT</text>
+            <x>385</x>
+            <y>331</y>
+            <width>82</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_107</name>
+            <text>Voltage (V)</text>
+            <x>481</x>
+            <y>137</y>
+            <width>84</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_108</name>
+            <text>Current (A)</text>
+            <x>589</x>
+            <y>137</y>
+            <width>78</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_109</name>
+            <text>DFE Reg 1</text>
+            <x>100</x>
+            <y>285</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_110</name>
+            <text>DFE Reg 2</text>
+            <x>100</x>
+            <y>304</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_111</name>
+            <text>DFE Reg 3</text>
+            <x>100</x>
+            <y>323</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_215</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Temp:DfeRegSense3-I</pv_name>
+            <x>204</x>
+            <y>323</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_216</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Temp:DfeRegSense2-I</pv_name>
+            <x>204</x>
+            <y>304</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_217</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Temp:DfeRegSense1-I</pv_name>
+            <x>204</x>
+            <y>285</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_128</name>
+            <text>Pwr Mgmt</text>
+            <x>102</x>
+            <y>141</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_218</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Temp:PwrMgmt-I</pv_name>
+            <x>204</x>
+            <y>141</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_129</name>
+            <text>Power</text>
+            <x>466</x>
+            <y>105</y>
+            <width>209</width>
+            <font>
+              <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+              </font>
+            </font>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_130</name>
+            <text>System Uptime</text>
+            <x>760</x>
+            <y>161</y>
+            <width>125</width>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_219</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Sys:Uptime-I</pv_name>
+            <x>884</x>
+            <y>161</y>
+            <background_color>
+              <color red="192" green="191" blue="188">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_220</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Fpga:FwVer-I</pv_name>
+            <x>885</x>
+            <y>137</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_131</name>
+            <text>Firmware Ver</text>
+            <x>760</x>
+            <y>137</y>
+            <width>126</width>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="led" version="2.0.0">
+            <name>LED</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Alarm:PLL-I</pv_name>
+            <x>888</x>
+            <y>82</y>
+            <width>93</width>
+            <height>22</height>
+            <off_label>PLL: Fail</off_label>
+            <off_color>
+              <color name="Major" red="255" green="0" blue="0">
+              </color>
+            </off_color>
+            <on_label>PLL: LOCK</on_label>
+            <on_color>
+              <color name="OpTitleBG" red="175" green="238" blue="175">
+              </color>
+            </on_color>
+            <foreground_color>
+              <color red="0" green="0" blue="255">
+              </color>
+            </foreground_color>
+            <line_color>
+              <color red="150" green="150" blue="150">
+              </color>
+            </line_color>
+            <square>true</square>
+            <actions>
+            </actions>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_221</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP4:Temp-I</pv_name>
+            <x>379</x>
+            <y>613</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_222</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP1:Temp-I</pv_name>
+            <x>379</x>
+            <y>553</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_223</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP4:TxPwr-I</pv_name>
+            <x>227</x>
+            <y>613</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_224</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP0:Temp-I</pv_name>
+            <x>379</x>
+            <y>534</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_132</name>
+            <text>SFP Readbacks</text>
+            <x>275</x>
+            <y>496</y>
+            <width>209</width>
+            <font>
+              <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+              </font>
+            </font>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_133</name>
+            <text>SFP 1</text>
+            <x>178</x>
+            <y>553</y>
+            <width>46</width>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>2</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_134</name>
+            <text>Tx Pwr</text>
+            <x>231</x>
+            <y>515</y>
+            <width>46</width>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>2</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_135</name>
+            <text>Temp</text>
+            <x>389</x>
+            <y>515</y>
+            <width>46</width>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>2</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_136</name>
+            <text>TxBias</text>
+            <x>467</x>
+            <y>515</y>
+            <width>46</width>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>2</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_225</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP1:TxPwr-I</pv_name>
+            <x>227</x>
+            <y>553</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_226</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP4:RxPwr-I</pv_name>
+            <x>302</x>
+            <y>613</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_227</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP3:RxPwr-I</pv_name>
+            <x>302</x>
+            <y>594</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_137</name>
+            <text>SFP 4</text>
+            <x>178</x>
+            <y>613</y>
+            <width>46</width>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>2</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_138</name>
+            <text>SFP 5</text>
+            <x>178</x>
+            <y>632</y>
+            <width>46</width>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>2</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_228</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP0:TxBias-I</pv_name>
+            <x>454</x>
+            <y>534</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_229</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP5:TxBias-I</pv_name>
+            <x>454</x>
+            <y>632</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_230</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP2:TxBias-I</pv_name>
+            <x>454</x>
+            <y>572</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_231</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP1:TxBias-I</pv_name>
+            <x>454</x>
+            <y>553</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_139</name>
+            <text>SFP 0</text>
+            <x>178</x>
+            <y>534</y>
+            <width>46</width>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>2</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_232</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP2:Temp-I</pv_name>
+            <x>379</x>
+            <y>572</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_233</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP3:TxPwr-I</pv_name>
+            <x>227</x>
+            <y>594</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_234</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP2:RxPwr-I</pv_name>
+            <x>302</x>
+            <y>572</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_235</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP3:TxBias-I</pv_name>
+            <x>454</x>
+            <y>594</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_236</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP3:Temp-I</pv_name>
+            <x>379</x>
+            <y>594</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_237</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP0:RxPwr-I</pv_name>
+            <x>302</x>
+            <y>534</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_238</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP5:RxPwr-I</pv_name>
+            <x>302</x>
+            <y>632</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_140</name>
+            <text>Rx Pwr</text>
+            <x>313</x>
+            <y>515</y>
+            <width>46</width>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>2</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_239</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP1:RxPwr-I</pv_name>
+            <x>302</x>
+            <y>553</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_240</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP0:TxPwr-I</pv_name>
+            <x>227</x>
+            <y>534</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_241</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP5:Temp-I</pv_name>
+            <x>379</x>
+            <y>632</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_141</name>
+            <text>SFP 2</text>
+            <x>178</x>
+            <y>572</y>
+            <width>46</width>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>2</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_242</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP2:TxPwr-I</pv_name>
+            <x>227</x>
+            <y>572</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_243</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP5:TxPwr-I</pv_name>
+            <x>227</x>
+            <y>632</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_142</name>
+            <text>SFP 3</text>
+            <x>178</x>
+            <y>594</y>
+            <width>46</width>
+            <horizontal_alignment>1</horizontal_alignment>
+            <vertical_alignment>2</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_244</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP4:TxBias-I</pv_name>
+            <x>454</x>
+            <y>613</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_245</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP5:Vcc-I</pv_name>
+            <x>529</x>
+            <y>632</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_246</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP4:Vcc-I</pv_name>
+            <x>529</x>
+            <y>613</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_247</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP3:Vcc-I</pv_name>
+            <x>529</x>
+            <y>594</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_248</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP2:Vcc-I</pv_name>
+            <x>529</x>
+            <y>572</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_249</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP1:Vcc-I</pv_name>
+            <x>529</x>
+            <y>553</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_250</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}SFP0:Vcc-I</pv_name>
+            <x>529</x>
+            <y>534</y>
+            <width>76</width>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_143</name>
+            <text>FPGA Die Temp</text>
+            <x>102</x>
+            <y>172</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_144</name>
+            <text>DFE 1</text>
+            <x>102</x>
+            <y>201</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_145</name>
+            <text>DFE 2</text>
+            <x>102</x>
+            <y>220</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_146</name>
+            <text>DFE 3</text>
+            <x>102</x>
+            <y>239</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_147</name>
+            <text>DFE 4</text>
+            <x>102</x>
+            <y>258</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_148</name>
+            <text>AFE 1</text>
+            <x>102</x>
+            <y>351</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_149</name>
+            <text>AFE 2</text>
+            <x>101</x>
+            <y>369</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_251</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Temp:AfeSense1-I</pv_name>
+            <x>204</x>
+            <y>369</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_252</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:Avcc_adcV-I</pv_name>
+            <x>478</x>
+            <y>367</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_253</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:Avcc_adcI-I</pv_name>
+            <x>577</x>
+            <y>367</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_150</name>
+            <text>ADC Avcc</text>
+            <x>382</x>
+            <y>367</y>
+            <width>82</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_151</name>
+            <text>ADC Avccaux</text>
+            <x>358</x>
+            <y>387</y>
+            <width>106</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_254</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:Avccaux_adcV-I</pv_name>
+            <x>478</x>
+            <y>387</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_255</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:Avccaux_adcI-I</pv_name>
+            <x>577</x>
+            <y>387</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_152</name>
+            <text>DAC Avcc</text>
+            <x>382</x>
+            <y>407</y>
+            <width>82</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_153</name>
+            <text>DAC Avccaux</text>
+            <x>358</x>
+            <y>427</y>
+            <width>106</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_256</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:Avcc_dacV-I</pv_name>
+            <x>478</x>
+            <y>407</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_257</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:Avcc_dacI-I</pv_name>
+            <x>577</x>
+            <y>407</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_259</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:Avccaux_dacI-I</pv_name>
+            <x>576</x>
+            <y>427</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_260</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:Avtt_dacV-I</pv_name>
+            <x>477</x>
+            <y>447</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_261</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:Avtt_dacI-I</pv_name>
+            <x>576</x>
+            <y>447</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_154</name>
+            <text>DAC Avtt</text>
+            <x>358</x>
+            <y>447</y>
+            <width>106</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_262</name>
+            <pv_name>$(PRI)-BI{BPM:$(N)}Pwr:Avccaux_dacV-I</pv_name>
+            <x>478</x>
+            <y>427</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>Live ADC Data</name>
+        <children>
+          <widget type="xyplot" version="3.0.0">
+            <name>X/Y Plot</name>
+            <x>40</x>
+            <y>64</y>
+            <width>546</width>
+            <height>252</height>
+            <title>ADC ChA</title>
+            <show_toolbar>true</show_toolbar>
+            <show_legend>false</show_legend>
+            <x_axis>
+              <title>X</title>
+              <autoscale>true</autoscale>
+              <log_scale>false</log_scale>
+              <minimum>0.0</minimum>
+              <maximum>1000.0</maximum>
+              <show_grid>true</show_grid>
+              <title_font>
+                <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                </font>
+              </title_font>
+              <scale_font>
+                <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                </font>
+              </scale_font>
+              <visible>true</visible>
+            </x_axis>
+            <y_axes>
+              <y_axis>
+                <title>Y</title>
+                <autoscale>true</autoscale>
+                <log_scale>false</log_scale>
+                <minimum>0.0</minimum>
+                <maximum>8192.0</maximum>
+                <show_grid>true</show_grid>
+                <title_font>
+                  <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+                  </font>
+                </title_font>
+                <scale_font>
+                  <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                  </font>
+                </scale_font>
+                <on_right>false</on_right>
+                <visible>true</visible>
+                <color>
+                  <color name="Text" red="0" green="0" blue="0">
+                  </color>
+                </color>
+              </y_axis>
+            </y_axes>
+            <traces>
+              <trace>
+                <name>adu</name>
+                <x_pv></x_pv>
+                <y_pv>$(PRI)-BI{BPM:$(N)}ADC:Live:ARaw-I</y_pv>
+                <err_pv></err_pv>
+                <axis>0</axis>
+                <trace_type>1</trace_type>
+                <color>
+                  <color red="0" green="0" blue="255">
+                  </color>
+                </color>
+                <line_width>1</line_width>
+                <line_style>0</line_style>
+                <point_type>0</point_type>
+                <point_size>10</point_size>
+                <visible>true</visible>
+              </trace>
+            </traces>
+          </widget>
+          <widget type="xyplot" version="3.0.0">
+            <name>X/Y Plot_1</name>
+            <x>34</x>
+            <y>340</y>
+            <width>546</width>
+            <height>252</height>
+            <title>ADC ChD</title>
+            <show_toolbar>true</show_toolbar>
+            <show_legend>false</show_legend>
+            <x_axis>
+              <title>X</title>
+              <autoscale>true</autoscale>
+              <log_scale>false</log_scale>
+              <minimum>0.0</minimum>
+              <maximum>100.0</maximum>
+              <show_grid>true</show_grid>
+              <title_font>
+                <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+                </font>
+              </title_font>
+              <scale_font>
+                <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                </font>
+              </scale_font>
+              <visible>true</visible>
+            </x_axis>
+            <y_axes>
+              <y_axis>
+                <title>Y</title>
+                <autoscale>true</autoscale>
+                <log_scale>false</log_scale>
+                <minimum>0.0</minimum>
+                <maximum>100.0</maximum>
+                <show_grid>true</show_grid>
+                <title_font>
+                  <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+                  </font>
+                </title_font>
+                <scale_font>
+                  <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                  </font>
+                </scale_font>
+                <on_right>false</on_right>
+                <visible>true</visible>
+                <color>
+                  <color name="Text" red="0" green="0" blue="0">
+                  </color>
+                </color>
+              </y_axis>
+            </y_axes>
+            <traces>
+              <trace>
+                <name>adu</name>
+                <x_pv></x_pv>
+                <y_pv>$(PRI)-BI{BPM:$(N)}ADC:Live:DRaw-I</y_pv>
+                <err_pv></err_pv>
+                <axis>0</axis>
+                <trace_type>1</trace_type>
+                <color>
+                  <color red="0" green="0" blue="255">
+                  </color>
+                </color>
+                <line_width>1</line_width>
+                <line_style>0</line_style>
+                <point_type>0</point_type>
+                <point_size>10</point_size>
+                <visible>true</visible>
+              </trace>
+            </traces>
+          </widget>
+          <widget type="xyplot" version="3.0.0">
+            <name>X/Y Plot_2</name>
+            <x>592</x>
+            <y>64</y>
+            <width>546</width>
+            <height>252</height>
+            <title>ADC ChB</title>
+            <show_toolbar>true</show_toolbar>
+            <show_legend>false</show_legend>
+            <x_axis>
+              <title>X</title>
+              <autoscale>true</autoscale>
+              <log_scale>false</log_scale>
+              <minimum>0.0</minimum>
+              <maximum>1000.0</maximum>
+              <show_grid>true</show_grid>
+              <title_font>
+                <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                </font>
+              </title_font>
+              <scale_font>
+                <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                </font>
+              </scale_font>
+              <visible>true</visible>
+            </x_axis>
+            <y_axes>
+              <y_axis>
+                <title>Y</title>
+                <autoscale>true</autoscale>
+                <log_scale>false</log_scale>
+                <minimum>0.0</minimum>
+                <maximum>8192.0</maximum>
+                <show_grid>true</show_grid>
+                <title_font>
+                  <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+                  </font>
+                </title_font>
+                <scale_font>
+                  <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                  </font>
+                </scale_font>
+                <on_right>false</on_right>
+                <visible>true</visible>
+                <color>
+                  <color name="Text" red="0" green="0" blue="0">
+                  </color>
+                </color>
+              </y_axis>
+            </y_axes>
+            <traces>
+              <trace>
+                <name>adu</name>
+                <x_pv></x_pv>
+                <y_pv>$(PRI)-BI{BPM:$(N)}ADC:Live:BRaw-I</y_pv>
+                <err_pv></err_pv>
+                <axis>0</axis>
+                <trace_type>1</trace_type>
+                <color>
+                  <color red="0" green="0" blue="255">
+                  </color>
+                </color>
+                <line_width>1</line_width>
+                <line_style>0</line_style>
+                <point_type>0</point_type>
+                <point_size>10</point_size>
+                <visible>true</visible>
+              </trace>
+            </traces>
+          </widget>
+          <widget type="xyplot" version="3.0.0">
+            <name>X/Y Plot_3</name>
+            <x>586</x>
+            <y>340</y>
+            <width>546</width>
+            <height>252</height>
+            <title>ADC ChC</title>
+            <show_toolbar>true</show_toolbar>
+            <show_legend>false</show_legend>
+            <x_axis>
+              <title>X</title>
+              <autoscale>true</autoscale>
+              <log_scale>false</log_scale>
+              <minimum>0.0</minimum>
+              <maximum>1000.0</maximum>
+              <show_grid>true</show_grid>
+              <title_font>
+                <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                </font>
+              </title_font>
+              <scale_font>
+                <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                </font>
+              </scale_font>
+              <visible>true</visible>
+            </x_axis>
+            <y_axes>
+              <y_axis>
+                <title>Y</title>
+                <autoscale>true</autoscale>
+                <log_scale>false</log_scale>
+                <minimum>0.0</minimum>
+                <maximum>8192.0</maximum>
+                <show_grid>true</show_grid>
+                <title_font>
+                  <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+                  </font>
+                </title_font>
+                <scale_font>
+                  <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                  </font>
+                </scale_font>
+                <on_right>false</on_right>
+                <visible>true</visible>
+                <color>
+                  <color name="Text" red="0" green="0" blue="0">
+                  </color>
+                </color>
+              </y_axis>
+            </y_axes>
+            <traces>
+              <trace>
+                <name>adu</name>
+                <x_pv></x_pv>
+                <y_pv>$(PRI)-BI{BPM:$(N)}ADC:Live:CRaw-I</y_pv>
+                <err_pv></err_pv>
+                <axis>0</axis>
+                <trace_type>1</trace_type>
+                <color>
+                  <color red="0" green="0" blue="255">
+                  </color>
+                </color>
+                <line_width>1</line_width>
+                <line_style>0</line_style>
+                <point_type>0</point_type>
+                <point_size>10</point_size>
+                <visible>true</visible>
+              </trace>
+            </traces>
+          </widget>
+        </children>
+      </tab>
+    </tabs>
+    <x>24</x>
     <y>54</y>
-    <width>546</width>
-    <height>252</height>
-    <title>ADC ChA</title>
-    <show_toolbar>true</show_toolbar>
-    <show_legend>false</show_legend>
-    <x_axis>
-      <title>X</title>
-      <autoscale>true</autoscale>
-      <log_scale>false</log_scale>
-      <minimum>0.0</minimum>
-      <maximum>1000.0</maximum>
-      <show_grid>true</show_grid>
-      <title_font>
-        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
-        </font>
-      </title_font>
-      <scale_font>
-        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
-        </font>
-      </scale_font>
-      <visible>true</visible>
-    </x_axis>
-    <y_axes>
-      <y_axis>
-        <title>Y</title>
-        <autoscale>true</autoscale>
-        <log_scale>false</log_scale>
-        <minimum>0.0</minimum>
-        <maximum>8192.0</maximum>
-        <show_grid>true</show_grid>
-        <title_font>
-          <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
-          </font>
-        </title_font>
-        <scale_font>
-          <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
-          </font>
-        </scale_font>
-        <on_right>false</on_right>
-        <visible>true</visible>
-        <color>
-          <color name="Text" red="0" green="0" blue="0">
-          </color>
-        </color>
-      </y_axis>
-    </y_axes>
-    <traces>
-      <trace>
-        <name>adu</name>
-        <x_pv></x_pv>
-        <y_pv>$(PRI)-BI{BPM:$(N)}ADC:Live:ARaw-I</y_pv>
-        <err_pv></err_pv>
-        <axis>0</axis>
-        <trace_type>1</trace_type>
-        <color>
-          <color red="0" green="0" blue="255">
-          </color>
-        </color>
-        <line_width>1</line_width>
-        <line_style>0</line_style>
-        <point_type>0</point_type>
-        <point_size>10</point_size>
-        <visible>true</visible>
-      </trace>
-    </traces>
-  </widget>
-  <widget type="xyplot" version="3.0.0">
-    <name>X/Y Plot_1</name>
-    <x>54</x>
-    <y>330</y>
-    <width>546</width>
-    <height>252</height>
-    <title>ADC ChD</title>
-    <show_toolbar>true</show_toolbar>
-    <show_legend>false</show_legend>
-    <x_axis>
-      <title>X</title>
-      <autoscale>true</autoscale>
-      <log_scale>false</log_scale>
-      <minimum>0.0</minimum>
-      <maximum>100.0</maximum>
-      <show_grid>true</show_grid>
-      <title_font>
-        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
-        </font>
-      </title_font>
-      <scale_font>
-        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
-        </font>
-      </scale_font>
-      <visible>true</visible>
-    </x_axis>
-    <y_axes>
-      <y_axis>
-        <title>Y</title>
-        <autoscale>true</autoscale>
-        <log_scale>false</log_scale>
-        <minimum>0.0</minimum>
-        <maximum>100.0</maximum>
-        <show_grid>true</show_grid>
-        <title_font>
-          <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
-          </font>
-        </title_font>
-        <scale_font>
-          <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
-          </font>
-        </scale_font>
-        <on_right>false</on_right>
-        <visible>true</visible>
-        <color>
-          <color name="Text" red="0" green="0" blue="0">
-          </color>
-        </color>
-      </y_axis>
-    </y_axes>
-    <traces>
-      <trace>
-        <name>adu</name>
-        <x_pv></x_pv>
-        <y_pv>$(PRI)-BI{BPM:$(N)}ADC:Live:DRaw-I</y_pv>
-        <err_pv></err_pv>
-        <axis>0</axis>
-        <trace_type>1</trace_type>
-        <color>
-          <color red="0" green="0" blue="255">
-          </color>
-        </color>
-        <line_width>1</line_width>
-        <line_style>0</line_style>
-        <point_type>0</point_type>
-        <point_size>10</point_size>
-        <visible>true</visible>
-      </trace>
-    </traces>
-  </widget>
-  <widget type="xyplot" version="3.0.0">
-    <name>X/Y Plot_2</name>
-    <x>654</x>
-    <y>54</y>
-    <width>546</width>
-    <height>252</height>
-    <title>ADC ChB</title>
-    <show_toolbar>true</show_toolbar>
-    <show_legend>false</show_legend>
-    <x_axis>
-      <title>X</title>
-      <autoscale>true</autoscale>
-      <log_scale>false</log_scale>
-      <minimum>0.0</minimum>
-      <maximum>1000.0</maximum>
-      <show_grid>true</show_grid>
-      <title_font>
-        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
-        </font>
-      </title_font>
-      <scale_font>
-        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
-        </font>
-      </scale_font>
-      <visible>true</visible>
-    </x_axis>
-    <y_axes>
-      <y_axis>
-        <title>Y</title>
-        <autoscale>true</autoscale>
-        <log_scale>false</log_scale>
-        <minimum>0.0</minimum>
-        <maximum>8192.0</maximum>
-        <show_grid>true</show_grid>
-        <title_font>
-          <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
-          </font>
-        </title_font>
-        <scale_font>
-          <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
-          </font>
-        </scale_font>
-        <on_right>false</on_right>
-        <visible>true</visible>
-        <color>
-          <color name="Text" red="0" green="0" blue="0">
-          </color>
-        </color>
-      </y_axis>
-    </y_axes>
-    <traces>
-      <trace>
-        <name>adu</name>
-        <x_pv></x_pv>
-        <y_pv>$(PRI)-BI{BPM:$(N)}ADC:Live:BRaw-I</y_pv>
-        <err_pv></err_pv>
-        <axis>0</axis>
-        <trace_type>1</trace_type>
-        <color>
-          <color red="0" green="0" blue="255">
-          </color>
-        </color>
-        <line_width>1</line_width>
-        <line_style>0</line_style>
-        <point_type>0</point_type>
-        <point_size>10</point_size>
-        <visible>true</visible>
-      </trace>
-    </traces>
-  </widget>
-  <widget type="xyplot" version="3.0.0">
-    <name>X/Y Plot_3</name>
-    <x>654</x>
-    <y>330</y>
-    <width>546</width>
-    <height>252</height>
-    <title>ADC ChC</title>
-    <show_toolbar>true</show_toolbar>
-    <show_legend>false</show_legend>
-    <x_axis>
-      <title>X</title>
-      <autoscale>true</autoscale>
-      <log_scale>false</log_scale>
-      <minimum>0.0</minimum>
-      <maximum>1000.0</maximum>
-      <show_grid>true</show_grid>
-      <title_font>
-        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
-        </font>
-      </title_font>
-      <scale_font>
-        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
-        </font>
-      </scale_font>
-      <visible>true</visible>
-    </x_axis>
-    <y_axes>
-      <y_axis>
-        <title>Y</title>
-        <autoscale>true</autoscale>
-        <log_scale>false</log_scale>
-        <minimum>0.0</minimum>
-        <maximum>8192.0</maximum>
-        <show_grid>true</show_grid>
-        <title_font>
-          <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
-          </font>
-        </title_font>
-        <scale_font>
-          <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
-          </font>
-        </scale_font>
-        <on_right>false</on_right>
-        <visible>true</visible>
-        <color>
-          <color name="Text" red="0" green="0" blue="0">
-          </color>
-        </color>
-      </y_axis>
-    </y_axes>
-    <traces>
-      <trace>
-        <name>adu</name>
-        <x_pv></x_pv>
-        <y_pv>$(PRI)-BI{BPM:$(N)}ADC:Live:CRaw-I</y_pv>
-        <err_pv></err_pv>
-        <axis>0</axis>
-        <trace_type>1</trace_type>
-        <color>
-          <color red="0" green="0" blue="255">
-          </color>
-        </color>
-        <line_width>1</line_width>
-        <line_style>0</line_style>
-        <point_type>0</point_type>
-        <point_size>10</point_size>
-        <visible>true</visible>
-      </trace>
-    </traces>
+    <width>1176</width>
+    <height>992</height>
   </widget>
 </display>

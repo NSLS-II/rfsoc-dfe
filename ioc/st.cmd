@@ -1,7 +1,7 @@
 #!//home/mead/epics/pscdrv/bin/linux-x86_64/pscdemo 
 epicsEnvSet("TOP","/home/mead/epics/pscdrv")
 epicsEnvSet("BPMDIR","$(TOP)")
-epicsEnvSet("ZUBPM_DBDIR","/home/mead/epics/zubpmioc")
+epicsEnvSet("ZUBPM_DBDIR","/home/mead/rfbpm/fwk/rfsoc-dfe/ioc")
 
 
 #epicsEnvSet("CNO","40")   ## Cell Number
@@ -38,7 +38,7 @@ epicsEnvSet("TLEN", "100000");      # TbT Length
 ########## use template
 
 ### PVs for first LINAC ZBPM:
-dbLoadRecords("$(ZUBPM_DBDIR)/zubpm.db", "P=$(IOCNAME), NO=1, ADC_LIVE_WFM_LEN=$(ALIVELEN), ADC_WFM_LEN=$(ALEN), TBT_LIVE_WFM_LEN=$(TLIVELEN), TBT_WFM_LEN=$(TLEN), SAVG_N=100, SAVG_NSAM=100")
+dbLoadRecords("$(ZUBPM_DBDIR)/rfsocbpm.db", "P=$(IOCNAME), NO=1, ADC_LIVE_WFM_LEN=$(ALIVELEN), ADC_WFM_LEN=$(ALEN), TBT_LIVE_WFM_LEN=$(TLIVELEN), TBT_WFM_LEN=$(TLEN), SAVG_N=100, SAVG_NSAM=100")
 dbLoadRecords("$(ZUBPM_DBDIR)/SFP.db", "P=$(IOCNAME), B=1, S=0, TMP=140, VCC=164, TXB=188, TXP=212, RXP=236")
 dbLoadRecords("$(ZUBPM_DBDIR)/SFP.db", "P=$(IOCNAME), B=1, S=1, TMP=144, VCC=168, TXB=192, TXP=216, RXP=240")
 dbLoadRecords("$(ZUBPM_DBDIR)/SFP.db", "P=$(IOCNAME), B=1, S=2, TMP=148, VCC=172, TXB=196, TXP=220, RXP=244")

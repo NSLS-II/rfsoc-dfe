@@ -105,6 +105,19 @@ typedef struct SysHealthMsg {
     u32 rsvd3[5];        // PSC Offset 260
     float pwrmgmt_temp;  // PSC Offset 280  LTC2977 Temperature
     u32   rsvd4[10];
+    float therm_temp[6]; // PSC Offset 324
+    float avcc_adc_v;    // PSC Offfset 350
+    float avcc_adc_i;
+    float avccaux_adc_v;
+    float avccaux_adc_i;
+    float avcc_dac_v;
+    float avcc_dac_i;
+    float avccaux_dac_v;
+    float avccaux_dac_i;
+    float avtt_dac_v;
+    float avtt_dac_i;
+
+
 } SysHealthMsg;
 
 

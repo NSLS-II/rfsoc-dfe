@@ -58,6 +58,7 @@ void i2c_get_ltc2991();
 float i2c_ltc2991_reg1_temp();
 float i2c_ltc2991_reg2_temp();
 float i2c_ltc2991_reg3_temp();
+float i2c_ltc2991_reg4_temp();
 float i2c_ltc2991_vcc_vin();
 float i2c_ltc2991_vcc_vin_current();
 float i2c_ltc2991_vcc_mgt_2v5();

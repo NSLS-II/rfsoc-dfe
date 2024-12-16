@@ -157,11 +157,14 @@ void sysmon_read_stats(struct SysHealthMsg *p) {
 
 	s32 temprawdata;
 
+	//xil_printf("Reading Sysmon\r\n");
     // Read the temperature data
     temprawdata = XSysMonPsu_GetAdcData(&SysMonInstance, XSM_CH_TEMP, XSYSMON_PS);
+    //xil_printf("temprawdata = %d\r\n",temprawdata);
 
     // Convert raw temperature data to degrees Celsius
     p->fpga_dietemp = XSysMonPsu_RawToTemperature_OnChip(temprawdata);
+    printf("fpga_dietemp = %f\r\n",p->fpga_dietemp);
 
 }
 
@@ -306,7 +309,7 @@ void ReadPosRegs(u32 *fpgabase, char *msg) {
 }
 
 
-void ReadSysInfo(u32 *fpgabase, char *msg) {
+void ReadSysInfo(char *msg) {
 
     u32 *msg_u32ptr;
     u8 i;
@@ -323,8 +326,8 @@ void ReadSysInfo(u32 *fpgabase, char *msg) {
     //write the PSC message
 
     //read FPGA version from PL register
-    syshealth.fpgaver = ReadPLioReg(FPGA_VER_REG);
-
+    //syshealth.fpgaver = ReadPLioReg(FPGA_VER_REG);
+    //xil_printf("Reading i2c temperature sensors...\r\n");
     //read temperature from i2c bus
     i2c_set_port_expander(I2C_PORTEXP1_ADDR,1);
     syshealth.dfe_temp[0] = read_i2c_temp(BRDTEMP0_ADDR);
@@ -332,6 +335,7 @@ void ReadSysInfo(u32 *fpgabase, char *msg) {
     syshealth.dfe_temp[2] = read_i2c_temp(BRDTEMP2_ADDR);
     syshealth.dfe_temp[3] = read_i2c_temp(BRDTEMP3_ADDR);
 
+    //xil_printf("Reading i2c LTC2991 info...\r\n");
     //read voltage & currents from LTC2991 chips
 	i2c_set_port_expander(I2C_PORTEXP1_ADDR,4);
 	i2c_configure_ltc2991();
@@ -356,6 +360,20 @@ void ReadSysInfo(u32 *fpgabase, char *msg) {
     syshealth.reg_temp[0] = i2c_ltc2991_reg1_temp();
     syshealth.reg_temp[1] = i2c_ltc2991_reg2_temp();
     syshealth.reg_temp[2] = i2c_ltc2991_reg3_temp();
+    syshealth.reg_temp[3] = i2c_ltc2991_reg3_temp();
+    syshealth.avcc_adc_v = i2c_ltc2991_vcc_adc_avcc();
+    syshealth.avcc_adc_i = i2c_ltc2991_vcc_adc_avcc_current();
+    syshealth.avccaux_adc_v = i2c_ltc2991_vcc_adc_avccaux();
+    syshealth.avccaux_adc_i =i2c_ltc2991_vcc_adc_avccaux_current();
+    syshealth.avcc_dac_v = i2c_ltc2991_vcc_dac_avcc();
+    syshealth.avcc_dac_i = i2c_ltc2991_vcc_dac_avcc_current();
+    syshealth.avccaux_dac_v = i2c_ltc2991_vcc_dac_avccaux();
+    syshealth.avccaux_dac_i = i2c_ltc2991_vcc_dac_avccaux_current();
+    syshealth.avtt_dac_v = i2c_ltc2991_vcc_dac_avtt();
+    syshealth.avtt_dac_i = i2c_ltc2991_vcc_dac_avtt_current();
+
+
+
 
     // read SFP status information from i2c bus
     for (i=0;i<=5;i++)
@@ -368,11 +386,15 @@ void ReadSysInfo(u32 *fpgabase, char *msg) {
     sysmon_read_stats(&syshealth);
 
     // Read the Uptime counter
+    //xil_printf("Reading Uptimer...\r\n");
     syshealth.uptime = UptimeCounter;
     //xil_printf("Uptime: %d\r\n",UptimeCounter);
 
+    //xil_printf("Copying buffer...\r\n");
     //copy the syshealth structure to the PSC msg buffer
     memcpy(&msg[MSGHDRLEN],&syshealth,sizeof(syshealth));
+    //xil_printf("Done...\r\n");
+
 
 }
 
@@ -386,7 +408,7 @@ void psc_status_thread()
 	struct sockaddr_in serv_addr, cli_addr;
     int n,loop=0;
     int sa_trigwait, sa_cnt=0, sa_cnt_prev=0;
-	unsigned int *fpgabase;
+
 
 	fpgabase = (unsigned int *) IOBUS_BASEADDR;
 
@@ -435,9 +457,11 @@ reconnect:
 
 	while (1) {
 
-		//xil_printf("In main loop...\r\n");
+		xil_printf("In main status loop...\r\n");
+		vTaskDelay(pdMS_TO_TICKS(1000));
 
 		//loop here until next 10Hz event
+		/*
 		do {
 		   sa_trigwait++;
 		   sa_cnt = fpgabase[SA_TRIGNUM_REG];
@@ -446,8 +470,9 @@ reconnect:
 		}
 	    while (sa_cnt_prev == sa_cnt);
 		sa_cnt_prev = sa_cnt;
+        */
 
-
+		/*
         ReadGenRegs(fpgabase,msgid30_buf);
         //write 10Hz msg30 packet
 	    Host2NetworkConvStatus(msgid30_buf,sizeof(msgid30_buf)+MSGHDRLEN);
@@ -468,22 +493,25 @@ reconnect:
           close(newsockfd);
           goto reconnect;
         }
+        */
+
 
         // Update Slow status information at 1Hz
-    	if ((loop % 10) == 0) {
-           //printf("Reading Sys Info\n");
-           ReadSysInfo(fpgabase,msgid32_buf);
-    	   Host2NetworkConvStatus(msgid32_buf,sizeof(msgid32_buf)+MSGHDRLEN);
+        //xil_printf("Reading Sys Info\r\n");
+        ReadSysInfo(msgid32_buf);
+    	Host2NetworkConvStatus(msgid32_buf,sizeof(msgid32_buf)+MSGHDRLEN);
     	    //for(i=0;i<160;i=i+4)
               //    printf("%d: %d  %d  %d  %d\n",i-8,msgid32_buf[i], msgid32_buf[i+1],
               //		                msgid32_buf[i+2], msgid32_buf[i+3]);
-           n = write(newsockfd,msgid32_buf,MSGID32LEN+MSGHDRLEN);
-           if (n < 0) {
-              printf("Status socket: ERROR writing MSG 32 - System Info\n");
-              close(newsockfd);
-              goto reconnect;
-            }
-    	}
+        //xil_printf("Writing Packet...r\n");
+
+        n = write(newsockfd,msgid32_buf,MSGID32LEN+MSGHDRLEN);
+        if (n < 0) {
+           printf("Status socket: ERROR writing MSG 32 - System Info\n");
+           close(newsockfd);
+           goto reconnect;
+           }
+
 
 		loop++;
 

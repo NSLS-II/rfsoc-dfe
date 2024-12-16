@@ -53,15 +53,18 @@ static sys_thread_t main_thread_handle;
 struct netif server_netif;
 
 //global buffers
+
 char msgid30_buf[1024];
 char msgid31_buf[1024];
 char msgid32_buf[1024];
+char temp[100];  //must be a memory leak in Host2NetworkConvStatus, need this small buffer here
 
 char msgid51_buf[MSGID51LEN];
 char msgid52_buf[MSGID52LEN];
 char msgid53_buf[MSGID53LEN];
 char msgid54_buf[MSGID54LEN];
 char msgid55_buf[MSGID55LEN];
+
 
 
 XIicPs IicPsInstance;	    // Instance of the IIC Device
@@ -155,27 +158,21 @@ void main_thread(void *p)
 
     // Start the PSC Status Thread.  Handles incoming commands from IOC
     //xil_printf("\r\n");
-    //sys_thread_new("psc_status_thread", psc_status_thread, 0,
-	//	THREAD_STACKSIZE,
-	//	DEFAULT_THREAD_PRIO);
+    sys_thread_new("psc_status_thread", psc_status_thread, 0, THREAD_STACKSIZE, 2);
 
 
     // Delay for 100ms
     vTaskDelay(pdMS_TO_TICKS(100));
     // Start the PSC Waveform Thread.  Handles incoming commands from IOC
     xil_printf("\r\n");
-    sys_thread_new("psc_wvfm_thread", psc_wvfm_thread, 0,
-		THREAD_STACKSIZE,
-		DEFAULT_THREAD_PRIO);
+    sys_thread_new("psc_wvfm_thread", psc_wvfm_thread, 0, THREAD_STACKSIZE, 1);
 
 
     // Delay for 100 ms
     vTaskDelay(pdMS_TO_TICKS(100));
     // Start the PSC Control Thread.  Handles incoming commands from IOC
     xil_printf("\r\n");
-    sys_thread_new("psc_cntrl_thread", psc_control_thread, 0,
-		THREAD_STACKSIZE,
-		DEFAULT_THREAD_PRIO);
+    sys_thread_new("psc_cntrl_thread", psc_control_thread, 0, THREAD_STACKSIZE, 3);
 
 	//setup an Uptime Timer
 	xUptimeTimer = xTimerCreate("UptimeTimer", pdMS_TO_TICKS(1000), pdTRUE, (void *)0, vUptimeTimerCallback);
@@ -277,6 +274,8 @@ int main()
 	time_t epoch_time;
 	struct tm *human_time;
 	char timebuf[80];
+	s32 temprawdata;
+	float fpga_dietemp;
 
     init_platform();
 
@@ -312,6 +311,17 @@ int main()
     sleep(2);
 
     i2c_get_ltc2991();
+
+    init_sysmon();
+
+
+    // Read the temperature data
+    temprawdata = XSysMonPsu_GetAdcData(&SysMonInstance, XSM_CH_TEMP, XSYSMON_PS);
+    xil_printf("temprawdata = %d\r\n",temprawdata);
+
+    // Convert raw temperature data to degrees Celsius
+    fpga_dietemp = XSysMonPsu_RawToTemperature_OnChip(temprawdata);
+    printf("fpga_dietemp = %f\r\n",fpga_dietemp);
 
 
 

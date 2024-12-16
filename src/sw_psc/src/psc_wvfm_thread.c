@@ -33,6 +33,12 @@
 
 
 
+void soft_trig() {
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ADCFIFO_TRIG, 1);
+	usleep(1000);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ADCFIFO_TRIG, 0);
+}
+
 
 void Host2NetworkConvWvfm(char *inbuf, int len) {
 
@@ -123,7 +129,7 @@ void psc_wvfm_thread()
 	int sockfd, newsockfd;
 	int clilen;
 	struct sockaddr_in serv_addr, cli_addr;
-    u32 loopcnt=0;
+    u32 i,loopcnt=0;
     s32 n;
     u32 wdcnt;
 
@@ -171,8 +177,9 @@ reconnect:
 
 	while (1) {
 
-		//xil_printf("Wvfm: In main waveform loop...\r\n");
+		xil_printf("Wvfm: In main waveform loop...\r\n");
 		loopcnt++;
+		soft_trig();
 		vTaskDelay(pdMS_TO_TICKS(1000));
 
 		//read wordcnt
@@ -183,14 +190,19 @@ reconnect:
         	ReadADCWvfm(msgid51_buf);
         	//write out Live ADC data (msg51)
         	Host2NetworkConvWvfm(msgid51_buf,sizeof(msgid51_buf)+MSGHDRLEN);
+       	    //for(i=0;i<20;i=i+4)
+            //          printf("%d: %d  %d  %d  %d\n",i-8,msgid32_buf[i], msgid32_buf[i+1],
+            //      		                msgid32_buf[i+2], msgid32_buf[i+3]);
         	n = write(newsockfd,msgid51_buf,MSGID51LEN+MSGHDRLEN);
         	if (n < 0) {
-        		printf("PSC Waveform: ERROR writing MSG 51 - ADC Waveform\n");
+        		printf("PSC Waveform: ERROR writing MSG 51 - ADC Waveform   n=%d\r\n",n);
         		close(newsockfd);
         		goto reconnect;
         	}
 
         }
+		else
+			xil_printf("ADC Wfm Trigger Error...\r\n");
 
 	}
 

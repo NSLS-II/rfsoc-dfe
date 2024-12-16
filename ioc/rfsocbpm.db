@@ -1323,6 +1323,100 @@ record(ai, "$(P){BPM:$(NO)}Temp:PwrMgmt-I") {
     field(LSV,"MINOR")
 }
 
+record(ai, "$(P){BPM:$(NO)}Pwr:Avcc_adcV-I") {
+    field(DESC, "ADC Avcc Voltage")
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@Rx$(NO) 32 348")
+    field(LINR,"LINEAR")
+    field(PREC,"3")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai, "$(P){BPM:$(NO)}Pwr:Avcc_adcI-I") {
+    field(DESC, "ADC Avcc Current")
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@Rx$(NO) 32 352")
+    field(LINR,"LINEAR")
+    field(PREC,"3")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai, "$(P){BPM:$(NO)}Pwr:Avccaux_adcV-I") {
+    field(DESC, "ADC Avcc Aux Voltage")
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@Rx$(NO) 32 356")
+    field(LINR,"LINEAR")
+    field(PREC,"3")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai, "$(P){BPM:$(NO)}Pwr:Avccaux_adcI-I") {
+    field(DESC, "ADC Avcc Aux Current")
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@Rx$(NO) 32 360")
+    field(LINR,"LINEAR")
+    field(PREC,"3")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai, "$(P){BPM:$(NO)}Pwr:Avcc_dacV-I") {
+    field(DESC, "DAC Avcc Voltage")
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@Rx$(NO) 32 364")
+    field(LINR,"LINEAR")
+    field(PREC,"3")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai, "$(P){BPM:$(NO)}Pwr:Avcc_dacI-I") {
+    field(DESC, "DAC Avcc Current")
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@Rx$(NO) 32 368")
+    field(LINR,"LINEAR")
+    field(PREC,"3")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai, "$(P){BPM:$(NO)}Pwr:Avccaux_dacV-I") {
+    field(DESC, "DAC Avcc Aux Voltage")
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@Rx$(NO) 32 372")
+    field(LINR,"LINEAR")
+    field(PREC,"3")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai, "$(P){BPM:$(NO)}Pwr:Avtt_dacI-I") {
+    field(DESC, "DAC Avcc Aux Current")
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@Rx$(NO) 32 376")
+    field(LINR,"LINEAR")
+    field(PREC,"3")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai, "$(P){BPM:$(NO)}Pwr:Avtt_dacV-I") {
+    field(DESC, "DAC Avtt Aux Voltage")
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@Rx$(NO) 32 380")
+    field(LINR,"LINEAR")
+    field(PREC,"3")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai, "$(P){BPM:$(NO)}Pwr:Avccaux_dacI-I") {
+    field(DESC, "DAC Avcc Aux Current")
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@Rx$(NO) 32 384")
+    field(LINR,"LINEAR")
+    field(PREC,"3")
+    field(SCAN,"I/O Intr")
+}
+
+
+
+
+
 
 ############# Waveform PV's (MSG ID 33) #########################
 

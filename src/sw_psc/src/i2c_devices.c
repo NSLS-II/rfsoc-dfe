@@ -157,6 +157,7 @@ void i2c_get_ltc2991()
   printf("reg1_temp:  %0.2f\r\n", i2c_ltc2991_reg1_temp());
   printf("reg2_temp:  %0.2f\r\n", i2c_ltc2991_reg2_temp());
   printf("reg3_temp:  %0.2f\r\n", i2c_ltc2991_reg3_temp());
+  printf("reg4_temp:  %0.2f\r\n", i2c_ltc2991_reg4_temp());
   printf("----\r\n");
 }
 
