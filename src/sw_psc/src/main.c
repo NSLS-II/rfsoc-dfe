@@ -306,6 +306,10 @@ int main()
     WriteLMK04828();
     sleep(1);
 
+    //Program 312.3MHz reference clock for EVR
+    xil_printf("Programming Reference Oscillator for EVR...\r\n");
+    write_lmk61e2();
+
     // Initialize the RFdc subsystem
     InitRFdc();
     sleep(2);

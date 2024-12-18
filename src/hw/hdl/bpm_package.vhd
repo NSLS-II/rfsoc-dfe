@@ -8,63 +8,100 @@ use ieee.std_logic_unsigned.all;
   
 package bpm_package is
 
-type adc_raw_type is array(0 to 3) of std_logic_vector(15 downto 0);
+type t_adc_raw is array(0 to 3) of std_logic_vector(15 downto 0);
 
 type sfp_i2c_data_type is array(0 to 5) of std_logic_vector(15 downto 0);
 
 
-type sdi_cntrl_type is record
-   reset       : std_logic_vector(15 downto 0);
-   my_addr     : std_logic_vector(15 downto 0);
-   stop_addr   : std_logic_vector(15 downto 0);
-   fa_trig_dly : std_logic_vector(11 downto 0);
-   
-end record sdi_cntrl_type;
 
-type sdi_status_type is record
-   cw_crcerrcnt          : std_logic_vector(31 downto 0);
-   ccw_crcerrcnt         : std_logic_vector(31 downto 0);
-   fa_trig_cnt           : std_logic_vector(31 downto 0);
-   fa_trig_sync_cnt      : std_logic_vector(31 downto 0);
-   cw_timeout_cnt_fault  : std_logic_vector(15 downto 0);
-   ccw_timeout_cnt_fault : std_logic_vector(15 downto 0);
-end record sdi_status_type;
-
-type brd_temps_type is record
-   temp0 : std_logic_vector(15 downto 0);
-   temp1 : std_logic_vector(15 downto 0);
-   temp2 : std_logic_vector(15 downto 0);
-   temp3 : std_logic_vector(15 downto 0);
-end record brd_temps_type;
+type t_reg_i_rfadc_fifo_rdout is record
+   adc0_dout    : std_logic_vector(31 downto 0);
+   adc0_rdcnt   : std_logic_vector(31 downto 0);    
+   adc1_dout    : std_logic_vector(31 downto 0); 
+   adc1_rdcnt   : std_logic_vector(31 downto 0);      
+   adc2_dout    : std_logic_vector(31 downto 0);
+   adc2_rdcnt   : std_logic_vector(31 downto 0); 
+   adc3_dout    : std_logic_vector(31 downto 0);     
+   adc3_rdcnt   : std_logic_vector(31 downto 0);  
+end record t_reg_i_rfadc_fifo_rdout;
 
 
-type afe_regs_type is record
-   temp0 : std_logic_vector(15 downto 0);
-   temp1 : std_logic_vector(15 downto 0);
-   temp2 : std_logic_vector(15 downto 0);
-   temp3 : std_logic_vector(15 downto 0);
-   Vreg0 : std_logic_vector(15 downto 0);
-   Vreg1 : std_logic_vector(15 downto 0);
-   Vreg2 : std_logic_vector(15 downto 0);
-   Vreg3 : std_logic_vector(15 downto 0);
-   Vreg4 : std_logic_vector(15 downto 0);
-   Vreg5 : std_logic_vector(15 downto 0);
-   Vreg6 : std_logic_vector(15 downto 0);
-   Vreg7 : std_logic_vector(15 downto 0);
-   Ireg0 : std_logic_vector(15 downto 0);
-   Ireg1 : std_logic_vector(15 downto 0);
-   Ireg2 : std_logic_vector(15 downto 0);
-   Ireg3 : std_logic_vector(15 downto 0);
-   Ireg4 : std_logic_vector(15 downto 0);
-   Ireg5 : std_logic_vector(15 downto 0);
-   Ireg6 : std_logic_vector(15 downto 0);
-   Ireg7 : std_logic_vector(15 downto 0);
-end record afe_regs_type;
+type t_reg_o_rfadc_fifo_rdout is record
+   enb          : std_logic;
+   rst          : std_logic;
+   adc0_rdstr   : std_logic;
+   adc1_rdstr   : std_logic;
+   adc2_rdstr   : std_logic;
+   adc3_rdstr   : std_logic;         
+end record t_reg_o_rfadc_fifo_rdout;
 
 
 
 
-type tbt_data_type is record
+type t_reg_i_adc_fifo_rdout is record
+   dout     : std_logic_vector(31 downto 0);
+   rdcnt    : std_logic_vector(31 downto 0); 
+end record t_reg_i_adc_fifo_rdout;
+
+type t_reg_o_adc_fifo_rdout is record
+   enb      : std_logic;
+   rst      : std_logic;
+   rdstr    : std_logic;
+end record t_reg_o_adc_fifo_rdout;
+
+
+type t_reg_i_tbt_fifo_rdout is record
+   dout     : std_logic_vector(31 downto 0);
+   rdcnt    : std_logic_vector(31 downto 0); 
+end record t_reg_i_tbt_fifo_rdout;
+
+type t_reg_o_tbt_fifo_rdout is record
+   enb      : std_logic;
+   rst      : std_logic;
+   rdstr    : std_logic;
+end record t_reg_o_tbt_fifo_rdout;
+
+
+type t_reg_o_dsa is record
+   str      : std_logic;
+   data     : std_logic_vector(7 downto 0);
+end record t_reg_o_dsa;
+
+type t_reg_o_evr is record
+   reset         : std_logic;
+   dma_trigno    : std_logic_vector(7 downto 0);
+   event_src_sel : std_logic;
+end record t_reg_o_evr;
+
+type t_reg_i_evr is record
+   ts_ns      : std_logic_vector(31 downto 0);
+   ts_s       : std_logic_vector(31 downto 0);
+end record t_reg_i_evr;
+
+
+type t_reg_o_pll is record
+   str      : std_logic;
+   data     : std_logic_vector(31 downto 0);
+end record t_reg_o_pll;
+
+type t_reg_i_pll is record
+   locked      : std_logic;
+end record t_reg_i_pll;
+
+
+type t_reg_o_therm is record
+   spi_we     : std_logic;
+   spi_wdata  : std_logic_vector(31 downto 0);
+   sel        : std_logic_vector(1 downto 0);
+end record t_reg_o_therm;
+
+type t_reg_i_therm is record
+   spi_rdata    : std_logic_vector(7 downto 0);
+end record t_reg_i_therm;
+
+
+
+type t_tbt_data is record
     cha_mag    : signed(31 downto 0);
     cha_phs    : signed(31 downto 0);
     cha_i      : signed(31 downto 0);
@@ -86,10 +123,11 @@ type tbt_data_type is record
     xpos_nm    : signed(31 downto 0);
     ypos_nm    : signed(31 downto 0);
     sum        : signed(31 downto 0);
-end record tbt_data_type;
+end record t_tbt_data;
 
 
-type sa_data_type is record
+type t_sa_data is record
+    cnt        : std_logic_vector(31 downto 0);
     cha_mag    : signed(31 downto 0);
     chb_mag    : signed(31 downto 0);
     chc_mag    : signed(31 downto 0);
@@ -97,10 +135,10 @@ type sa_data_type is record
     xpos       : signed(31 downto 0);
     ypos       : signed(31 downto 0);
     sum        : signed(31 downto 0);
-end record sa_data_type;
+end record t_sa_data;
 
 
-type fa_data_type is record
+type t_fa_data is record
     cha_mag    : signed(31 downto 0);
     chb_mag    : signed(31 downto 0);
     chc_mag    : signed(31 downto 0); 
@@ -108,7 +146,7 @@ type fa_data_type is record
     xpos       : signed(31 downto 0);
     ypos       : signed(31 downto 0);
     sum        : signed(31 downto 0);
-end record fa_data_type;
+end record t_fa_data;
 
 
 type rffe_sw_params_type is record
@@ -119,7 +157,7 @@ type rffe_sw_params_type is record
 end record rffe_sw_params_type;
 
 
-type tbt_params_type is record
+type t_reg_o_tbt is record
     kx          : std_logic_vector(31 downto 0);
     ky          : std_logic_vector(31 downto 0);
     cha_gain    : std_logic_vector(15 downto 0);
@@ -130,17 +168,33 @@ type tbt_params_type is record
     ypos_offset : std_logic_vector(31 downto 0); 
     gate_delay  : std_logic_vector(8 downto 0); 
     gate_width  : std_logic_vector(8 downto 0);
-end record tbt_params_type;
+end record t_reg_o_tbt;
 
 
-type dma_params_type is record
-    dma_adc_length   : std_logic_vector(31 downto 0);
-    dma_tbt_length   : std_logic_vector(31 downto 0);
-    dma_fifo_rst     : std_logic;
-    dma_adc_enb      : std_logic;
-    dma_tbt_enb      : std_logic;
-    dma_testdata_enb : std_logic;
-end record dma_params_type;
+type t_reg_o_dma is record
+    soft_trig    : std_logic;
+    trigsrc      : std_logic;
+    testdata_enb : std_logic;
+    adc_len      : std_logic_vector(31 downto 0);
+    tbt_len      : std_logic_vector(31 downto 0);
+    fa_len       : std_logic_vector(31 downto 0);
+    fifo_rst     : std_logic;
+    adc_enb      : std_logic;
+    tbt_enb      : std_logic;
+    fa_enb       : std_logic;
+end record t_reg_o_dma;
+
+type t_reg_i_dma is record
+    trig_cnt     : std_logic_vector(31 downto 0); 
+    status       : std_logic_vector(4 downto 0);
+    ts_s         : std_logic_vector(31 downto 0);
+    ts_ns        : std_logic_vector(31 downto 0);
+end record t_reg_i_dma;
+
+
+
+
+
 
 
 component system is
@@ -172,9 +226,7 @@ component system is
     m32_axis_0_tdata : out STD_LOGIC_VECTOR ( 191 downto 0 );
     m32_axis_0_tready : in STD_LOGIC;
     m32_axis_0_tvalid : out STD_LOGIC;    
-
-    
-    
+ 
     m2_axis_aclk_0 : in STD_LOGIC;
     m3_axis_aclk_0 : in STD_LOGIC;
     m2_axis_aresetn_0 : in STD_LOGIC;

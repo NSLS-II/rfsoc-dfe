@@ -408,7 +408,7 @@ void psc_status_thread()
 	struct sockaddr_in serv_addr, cli_addr;
     int n,loop=0;
     int sa_trigwait, sa_cnt=0, sa_cnt_prev=0;
-
+    unsigned int *fpgabase;
 
 	fpgabase = (unsigned int *) IOBUS_BASEADDR;
 

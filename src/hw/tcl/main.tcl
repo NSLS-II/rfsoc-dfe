@@ -18,7 +18,16 @@ proc setSources {} {
   lappend Sources {"../hdl/top.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/bpm_package.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/adc_data_rdout.vhd" "VHDL 2008"}
-
+  lappend Sources {"../hdl/ps_io.vhd" "VHDL 2008"} 
+  lappend Sources {"../hdl/rf_adc_fifos.vhd" "VHDL 2008"}
+  
+  lappend Sources {"../hdl/evr/evr_top.vhd" "VHDL 2008"}
+  lappend Sources {"../hdl/evr/EventReceiverChannel.v" "Verilog"}
+  lappend Sources {"../hdl/evr/timeofDayReceiver.v" "Verilog"}
+  lappend Sources {"../hdl/evr/gty_evr_wrapper.v" "Verilog"}  
+  lappend Sources {"../hdl/evr/gty_evr_example_gtwiz_userclk_tx.v" "Verilog"}  
+  lappend Sources {"../hdl/evr/gty_evr_example_gtwiz_userclk_rx.v" "Verilog"}  
+  
 
   lappend Sources {"../cstr/pins.xdc"  "XDC"}
   lappend Sources {"../cstr/debug.xdc" "XDC"}
@@ -48,6 +57,7 @@ proc doOnCreate {} {
   source ${TclPath}/system.tcl
   source ${TclPath}/rfadc_clk_pll.tcl 
   source ${TclPath}/adc_fifo.tcl 
+  source ${TclPath}/gty_evr.tcl 
   
   addSources "Sources" 
 

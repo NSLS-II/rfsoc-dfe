@@ -38,8 +38,16 @@ generic(
     adc2_in_p               : in std_logic; 
     adc2_in_n               : in std_logic;  
     adc3_in_p               : in std_logic; 
-    adc3_in_n               : in std_logic;     
-  
+    adc3_in_n               : in std_logic;  
+    
+    -- evr
+    gty_evr_refclk_p        : in std_logic; 
+    gty_evr_refclk_n        : in std_logic; 
+    gty_evr_tx_p            : out std_logic; 
+    gty_evr_tx_n            : out std_logic;
+    gty_evr_rx_p            : in std_logic; 
+    gty_evr_rx_n            : in std_logic; 
+       
     fp_led                  : out std_logic_vector(7 downto 0);
     dbg                     : out std_logic_vector(19 downto 0)
 
@@ -53,6 +61,7 @@ architecture behv of top is
   signal pl_clk0      : std_logic;
   signal pl_resetn    : std_logic;
   signal pl_reset     : std_logic;
+  signal ps_leds      : std_logic_vector(7 downto 0);
   
   signal m_axi4_m2s : t_pl_regs_m2s;
   signal m_axi4_s2m : t_pl_regs_s2m;
@@ -62,6 +71,8 @@ architecture behv of top is
   
   signal clk104_pl_clkin : std_logic;
   signal clk104_pl_clk   : std_logic;
+  
+  signal adc_data        : t_adc_raw; 
   
   signal adc0_axis_tdata        : std_logic_vector(191 downto 0); 
   signal adc0_axis_tready       : std_logic;
@@ -79,6 +90,42 @@ architecture behv of top is
   signal rfadc_out_clk          : std_logic;
   signal rfadc_axis_mmcm_clk    : std_logic;
   signal rfadc_axis_clk         : std_logic;
+  
+  signal reg_o_adcfifo   : t_reg_o_adc_fifo_rdout;
+  signal reg_i_adcfifo   : t_reg_i_adc_fifo_rdout;
+  signal reg_o_tbtfifo   : t_reg_o_tbt_fifo_rdout;
+  signal reg_i_tbtfifo   : t_reg_i_tbt_fifo_rdout;
+
+  
+  signal reg_o_dsa       : t_reg_o_dsa;  
+  signal reg_o_pll       : t_reg_o_pll;
+  signal reg_i_pll       : t_reg_i_pll;
+  signal reg_i_rfadcfifo : t_reg_i_rfadc_fifo_rdout;
+  signal reg_o_rfadcfifo : t_reg_o_rfadc_fifo_rdout;	 
+  
+  signal reg_o_tbt       : t_reg_o_tbt;
+  signal reg_o_dma       : t_reg_o_dma;
+  signal reg_i_dma       : t_reg_i_dma;
+  signal reg_o_evr       : t_reg_o_evr;
+  signal reg_i_evr       : t_reg_i_evr;
+  signal reg_o_therm     : t_reg_o_therm;
+  signal reg_i_therm     : t_reg_i_therm;
+  
+  signal tbt_data        : t_tbt_data;    
+  signal sa_data         : t_sa_data;
+  signal fa_data         : t_fa_data;
+  
+  signal evr_gty_reset       : std_logic_vector(7 downto 0);
+  signal evr_ref_clk         : std_logic;
+  signal evr_rcvd_clk        : std_logic;
+  signal evr_tbt_trig        : std_logic;
+  signal evr_fa_trig         : std_logic;
+  signal evr_sa_trig         : std_logic;
+  signal evr_gps_trig        : std_logic;
+  signal evr_dma_trig        : std_logic;
+  signal evr_dbg             : std_logic_vector(19 downto 0);
+  signal evr_dma_trignum     : std_logic_vector(7 downto 0);
+  signal evr_ts              : std_logic_vector(63 downto 0); 
   
   
   attribute mark_debug     : string;
@@ -127,72 +174,149 @@ axisclk_adc: entity work.rfadc_clk_pll
 fp_led <= reg_o.fp_leds.val.data;
 --fp_led(7 downto 0) <= "01010101"; --gpio_leds_i(5 downto 0);
 
-regs: pl_regs
+
+ps_pl: entity work.ps_io
   port map (
-    pi_clock => pl_clk0, 
-    pi_reset => not pl_resetn, 
-    -- TOP subordinate memory mapped interface
-    --pi_s_reset => '0', 
-    pi_s_top => m_axi4_m2s, 
-    po_s_top => m_axi4_s2m, 
-    -- to logic interface
-    pi_addrmap => reg_i,  
-    po_addrmap => reg_o
+    pl_clock => pl_clk0, 
+    pl_reset => not pl_resetn, 
+    m_axi4_m2s => m_axi4_m2s, 
+    m_axi4_s2m => m_axi4_s2m, 
+    fp_leds => ps_leds,
+    adc_data => adc_data,
+    sa_data => sa_data,
+    reg_o_tbt => reg_o_tbt,  
+    reg_i_rfadcfifo => reg_i_rfadcfifo, 
+    reg_o_rfadcfifo => reg_o_rfadcfifo, 	 
+    reg_o_adcfifo => reg_o_adcfifo, 
+	reg_i_adcfifo => reg_i_adcfifo,
+	reg_o_tbtfifo => reg_o_tbtfifo, 
+	reg_i_tbtfifo => reg_i_tbtfifo,
+	reg_o_dma => reg_o_dma,
+	reg_i_dma => reg_i_dma,
+	reg_o_dsa => reg_o_dsa,
+	reg_o_pll => reg_o_pll,
+	reg_i_pll => reg_i_pll,
+	reg_o_evr => reg_o_evr, 
+	reg_i_evr => reg_i_evr
+          
   );
 
+
+
+
+--regs: pl_regs
+--  port map (
+--    pi_clock => pl_clk0, 
+--    pi_reset => not pl_resetn, 
+--    -- TOP subordinate memory mapped interface
+--    --pi_s_reset => '0', 
+--    pi_s_top => m_axi4_m2s, 
+--    po_s_top => m_axi4_s2m, 
+--    -- to logic interface
+--    pi_addrmap => reg_i,  
+--    po_addrmap => reg_o
+--  );
+
+  
+  
+rfadc_fifos:  entity work.rf_adc_fifos
+  port map (
+    pl_clk0 => pl_clk0,  
+    pl_reset => pl_reset, 
+    adc_clk => rfadc_axis_clk,  
+    reg_i => reg_i_rfadcfifo, 
+    reg_o => reg_o_rfadcfifo,  
+    
+    adc0_data => adc0_axis_tdata, 
+    adc1_data => adc1_axis_tdata,   
+    adc2_data => adc2_axis_tdata, 
+    adc3_data => adc3_axis_tdata    
+ );  
+  
   
 
-adc0_fifo:  entity work.adc_data_rdout
-  port map (
-    sys_clk => pl_clk0, 
-    adc_clk => rfadc_axis_clk,  
-    sys_rst => pl_reset,
-    adc_data => adc0_axis_tdata,
-    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
-    fifo_rdstr => reg_o.adc0fifo_dout.data.swacc, 
-    fifo_dout => reg_i.adc0fifo_dout.data.data,  
-    fifo_rdcnt => reg_i.adc0fifo_wdcnt.data.data, 
-    fifo_rst => reg_o.adcfifo_reset.data.data(0)
- );
+--adc0_fifo:  entity work.adc_data_rdout
+--  port map (
+--    sys_clk => pl_clk0, 
+--    adc_clk => rfadc_axis_clk,  
+--    sys_rst => pl_reset,
+--    adc_data => adc0_axis_tdata,
+--    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
+--    fifo_rdstr => reg_o.adc0fifo_dout.data.swacc, 
+--    fifo_dout => reg_i.adc0fifo_dout.data.data,  
+--    fifo_rdcnt => reg_i.adc0fifo_wdcnt.data.data, 
+--    fifo_rst => reg_o.adcfifo_reset.data.data(0)
+-- );
 
-adc1_fifo:  entity work.adc_data_rdout
-  port map (
-    sys_clk => pl_clk0, 
-    adc_clk => rfadc_axis_clk,  
-    sys_rst => pl_reset,
-    adc_data => adc1_axis_tdata,
-    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
-    fifo_rdstr => reg_o.adc1fifo_dout.data.swacc, 
-    fifo_dout => reg_i.adc1fifo_dout.data.data,  
-    fifo_rdcnt => reg_i.adc1fifo_wdcnt.data.data, 
-    fifo_rst => reg_o.adcfifo_reset.data.data(0)
- );
+--adc1_fifo:  entity work.adc_data_rdout
+--  port map (
+--    sys_clk => pl_clk0, 
+--    adc_clk => rfadc_axis_clk,  
+--    sys_rst => pl_reset,
+--    adc_data => adc1_axis_tdata,
+--    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
+--    fifo_rdstr => reg_o.adc1fifo_dout.data.swacc, 
+--    fifo_dout => reg_i.adc1fifo_dout.data.data,  
+--    fifo_rdcnt => reg_i.adc1fifo_wdcnt.data.data, 
+--    fifo_rst => reg_o.adcfifo_reset.data.data(0)
+-- );
  
- adc2_fifo:  entity work.adc_data_rdout
-  port map (
-    sys_clk => pl_clk0, 
-    adc_clk => rfadc_axis_clk,  
-    sys_rst => pl_reset,
-    adc_data => adc2_axis_tdata,
-    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
-    fifo_rdstr => reg_o.adc2fifo_dout.data.swacc, 
-    fifo_dout => reg_i.adc2fifo_dout.data.data,  
-    fifo_rdcnt => reg_i.adc2fifo_wdcnt.data.data, 
-    fifo_rst => reg_o.adcfifo_reset.data.data(0)
- );
+-- adc2_fifo:  entity work.adc_data_rdout
+--  port map (
+--    sys_clk => pl_clk0, 
+--    adc_clk => rfadc_axis_clk,  
+--    sys_rst => pl_reset,
+--    adc_data => adc2_axis_tdata,
+--    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
+--    fifo_rdstr => reg_o.adc2fifo_dout.data.swacc, 
+--    fifo_dout => reg_i.adc2fifo_dout.data.data,  
+--    fifo_rdcnt => reg_i.adc2fifo_wdcnt.data.data, 
+--    fifo_rst => reg_o.adcfifo_reset.data.data(0)
+-- );
  
-adc3_fifo:  entity work.adc_data_rdout
-  port map (
-    sys_clk => pl_clk0, 
-    adc_clk => rfadc_axis_clk,  
-    sys_rst => pl_reset,
-    adc_data => adc3_axis_tdata,
-    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
-    fifo_rdstr => reg_o.adc3fifo_dout.data.swacc, 
-    fifo_dout => reg_i.adc3fifo_dout.data.data,  
-    fifo_rdcnt => reg_i.adc3fifo_wdcnt.data.data, 
-    fifo_rst => reg_o.adcfifo_reset.data.data(0)
- );
+--adc3_fifo:  entity work.adc_data_rdout
+--  port map (
+--    sys_clk => pl_clk0, 
+--    adc_clk => rfadc_axis_clk,  
+--    sys_rst => pl_reset,
+--    adc_data => adc3_axis_tdata,
+--    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
+--    fifo_rdstr => reg_o.adc3fifo_dout.data.swacc, 
+--    fifo_dout => reg_i.adc3fifo_dout.data.data,  
+--    fifo_rdcnt => reg_i.adc3fifo_wdcnt.data.data, 
+--    fifo_rst => reg_o.adcfifo_reset.data.data(0)
+-- );
+
+
+
+--embedded event receiver
+evr: entity work.evr_top 
+  generic map (
+    SIM_MODE => SIM_MODE
+  )
+  port map(
+    sys_clk => pl_clk0,
+    sys_rst => pl_reset, 
+    reg_o => reg_o_evr,
+    refclk_p => gty_evr_refclk_p,  -- 312.5 MHz reference clock
+    refclk_n => gty_evr_refclk_n,
+    tx_p => gty_evr_tx_p,
+    tx_n => gty_evr_tx_n,
+    rx_p => gty_evr_rx_p,
+    rx_n => gty_evr_rx_n,
+      
+    trignum => evr_dma_trignum, 
+    trigdly => (x"00000001"), 
+    tbt_trig => evr_tbt_trig, 
+    fa_trig => evr_fa_trig, 
+    sa_trig => evr_sa_trig, 
+    usr_trig => evr_dma_trig, 
+    gps_trig => evr_gps_trig, 
+    timestamp => evr_ts,  
+    evr_rcvd_clk => evr_rcvd_clk,
+    evr_ref_clk => evr_ref_clk,
+    dbg => evr_dbg
+);	
 
 
 
