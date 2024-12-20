@@ -36,8 +36,8 @@ void set_atten(volatile unsigned int *fpgabase, int msgVal) {
 
 void set_geo_dly(volatile unsigned int *fpgabase, int msgVal) {
     // the Geo delay is the same as tbt_gate delay, set them both for now
-    fpgabase[FINE_TRIG_DLY_REG] = msgVal;
-    fpgabase[TBT_GATEDLY_REG] = msgVal;
+    //fpgabase[FINE_TRIG_DLY_REG] = msgVal;
+    //fpgabase[TBT_GATEDLY_REG] = msgVal;
 }
 
 
@@ -48,7 +48,7 @@ void set_coarse_dly(volatile unsigned int *fpgabase, int msgVal) {
 
 
 void set_trigtobeam_thresh(volatile unsigned int *fpgabase, int msgVal) {
-    fpgabase[TRIGTOBEAM_THRESH_REG] = msgVal;
+    //fpgabase[TRIGTOBEAM_THRESH_REG] = msgVal;
 }
 
 
@@ -59,11 +59,11 @@ void set_eventno(volatile unsigned int *fpgabase, int msgVal) {
 void set_trigsrc(volatile unsigned int *fpgabase, int msgVal) {
     if (msgVal == 0) {
         xil_printf("Setting Trigger Source to EVR\r\n");
-        fpgabase[TRIG_EVRINT_SEL_REG] = msgVal;
+        //fpgabase[TRIG_EVRINT_SEL_REG] = msgVal;
     }
     else if (msgVal == 1) {
 	    xil_printf("Setting Trigger Source to INT (soft)\r\n");
-        fpgabase[TRIG_EVRINT_SEL_REG] = msgVal;
+        //fpgabase[TRIG_EVRINT_SEL_REG] = msgVal;
     }
     else
         xil_printf("Invalid Trigger Source\r\n");

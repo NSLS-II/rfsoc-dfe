@@ -258,14 +258,14 @@ void ReadGenRegs(u32 *fpgabase, char *msg) {
     status.bba_yoff = ReadPLioReg(BBA_YOFF_REG);
     status.rf_atten = ReadPLioReg(RF_DSA_REG) / 4;
     status.coarse_trig_dly = ReadPLioReg(COARSE_TRIG_DLY_REG);
-    status.fine_trig_dly = ReadPLioReg(FINE_TRIG_DLY_REG);
+    //status.fine_trig_dly = ReadPLioReg(FINE_TRIG_DLY_REG);
 
     status.trig_dmacnt = ReadPLioReg(DMA_TRIGCNT_REG);
     status.trig_eventno = ReadPLioReg(EVR_DMA_TRIGNUM_REG);
     status.evr_ts_s_triglat = ReadPLioReg(EVR_TS_S_LAT_REG);
     status.evr_ts_ns_triglat = ReadPLioReg(EVR_TS_NS_LAT_REG);
-    status.trigtobeam_thresh = ReadPLioReg(TRIGTOBEAM_THRESH_REG);
-    status.trigtobeam_dly = ReadPLioReg(TRIGTOBEAM_DLY_REG);
+    //status.trigtobeam_thresh = ReadPLioReg(TRIGTOBEAM_THRESH_REG);
+    //status.trigtobeam_dly = ReadPLioReg(TRIGTOBEAM_DLY_REG);
 
 
     //copy the structure to the PSC msg buffer

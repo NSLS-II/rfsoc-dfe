@@ -212,6 +212,7 @@ endfunction
    ,.rxcommadeten_in                         (rxcommadeten_in)
    ,.rxmcommaalignen_in                      (rxmcommaalignen_in)
    ,.rxpcommaalignen_in                      (rxpcommaalignen_in)
+   ,.rxpolarity_in                           (1'H1)
    ,.rxusrclk_in                             (rxusrclk_int)
    ,.rxusrclk2_in                            (rxusrclk2_int)
    ,.tx8b10ben_in                            (tx8b10ben_in)

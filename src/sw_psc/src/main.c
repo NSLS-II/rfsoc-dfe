@@ -276,6 +276,7 @@ int main()
 	char timebuf[80];
 	s32 temprawdata;
 	float fpga_dietemp;
+    u32 ts_s, ts_ns;
 
     init_platform();
 
@@ -329,6 +330,19 @@ int main()
 
 
 
+	//EVR reset
+	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_RST_REG, 1);
+	sleep(60);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_RST_REG, 0);
+    usleep(1000);
+
+    //read Timestamp
+    for (i=0;i<10;i++) {
+      ts_s = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_S_REG);
+      ts_ns = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_NS_REG);
+      xil_printf("ts= %d    %d\r\n",ts_s,ts_ns);
+    }
+
 
 
     //read out the fifo
@@ -340,11 +354,11 @@ int main()
 
 
     //blink some FP leds
-    for (i=0;i<100;i++) {
-    	Xil_Out32(XPAR_M_AXI_BASEADDR + 0x20, i++);
-    	sleep(0.1);
-    	xil_printf("%d:  %d\r\n",i,Xil_In32(XPAR_M_AXI_BASEADDR + 0x20)); //fpgabase[8]);
-    }
+    //for (i=0;i<100;i++) {
+    //	Xil_Out32(XPAR_M_AXI_BASEADDR + 0x20, i++);
+    //	sleep(0.1);
+    //	xil_printf("%d:  %d\r\n",i,Xil_In32(XPAR_M_AXI_BASEADDR + 0x20)); //fpgabase[8]);
+    //}
 
 
 

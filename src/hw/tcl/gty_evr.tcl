@@ -64,7 +64,7 @@ set gty_evr [create_ip -name gtwizard_ultrascale -vendor xilinx.com -library ip 
 
 # User Parameters
 set_property -dict [list \
-  CONFIG.ENABLE_OPTIONAL_PORTS {cpllfbclklost_out cplllock_out cpllrefclklost_out} \
+  CONFIG.ENABLE_OPTIONAL_PORTS {rxpolarity_in cpllfbclklost_out cplllock_out cpllrefclklost_out} \
   CONFIG.FREERUN_FREQUENCY {100} \
   CONFIG.RX_COMMA_ALIGN_WORD {2} \
   CONFIG.RX_COMMA_M_ENABLE {true} \
