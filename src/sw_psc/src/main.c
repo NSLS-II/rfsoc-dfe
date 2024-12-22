@@ -229,35 +229,35 @@ void trig_fifo()
 	u32 wdcnt;
 
 	//Reset & Trigger the ADC0 FIFO
-	Xil_Out32(XPAR_M_AXI_BASEADDR + ADCFIFO_RESET, 1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + RFADCFIFO_RESET, 1);
 	usleep(10);
-	Xil_Out32(XPAR_M_AXI_BASEADDR + ADCFIFO_RESET, 0);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + RFADCFIFO_RESET, 0);
 	usleep(10);
-	wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + ADC0FIFO_WDCNT);
+	wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + RFADC0FIFO_WDCNT);
 	xil_printf("FIFO Wdcnt = %d\r\n",wdcnt);
 	//Trigger
-	Xil_Out32(XPAR_M_AXI_BASEADDR + ADCFIFO_TRIG, 1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + RFADCFIFO_TRIG, 1);
 	usleep(100);
-	Xil_Out32(XPAR_M_AXI_BASEADDR + ADCFIFO_TRIG, 0);
-	wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + ADC0FIFO_WDCNT);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + RFADCFIFO_TRIG, 0);
+	wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + RFADC0FIFO_WDCNT);
 	xil_printf("FIFO Wdcnt = %d\r\n",wdcnt);
 
     for (i=0;i<100;i++) {
     	for (j=0;j<8;j++) {
     	    if (j<6) {
-    	        data = Xil_In32(XPAR_M_AXI_BASEADDR + ADC0FIFO_DATA);
+    	        data = Xil_In32(XPAR_M_AXI_BASEADDR + RFADC0FIFO_DATA);
    	            adcval = (s16) ((data & 0xFFFF0000) >> 16);
    	            xil_printf("%d ",adcval>>2);
    	            adcval = (s16) (data & 0xFFFF);
                 xil_printf("%d ",adcval>>2);
     	    }
             else
-       	        data = Xil_In32(XPAR_M_AXI_BASEADDR + ADC0FIFO_DATA);
+       	        data = Xil_In32(XPAR_M_AXI_BASEADDR + RFADC0FIFO_DATA);
         }
     }
 
 
-    wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + ADC0FIFO_WDCNT);
+    wdcnt = Xil_In32(XPAR_M_AXI_BASEADDR + RFADC0FIFO_WDCNT);
     xil_printf("FIFO Wdcnt = %d\r\n\r\n",wdcnt);
 
 
@@ -329,10 +329,17 @@ int main()
     printf("fpga_dietemp = %f\r\n",fpga_dietemp);
 
 
+    /*
+    for (i=0;i<255;i++) {
+    	Xil_Out32(XPAR_M_AXI_BASEADDR + FP_LEDS_REG, i);
+        xil_printf("Setting LED's to %d\r\n",i);
+    	sleep(1);
+    }
+    */
 
 	//EVR reset
 	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_RST_REG, 1);
-	sleep(60);
+	sleep(1);
 	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_RST_REG, 0);
     usleep(1000);
 

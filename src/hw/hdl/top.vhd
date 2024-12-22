@@ -47,6 +47,11 @@ generic(
     gty_evr_tx_n            : out std_logic;
     gty_evr_rx_p            : in std_logic; 
     gty_evr_rx_n            : in std_logic; 
+    
+    sfp_led                 : out std_logic_vector(11 downto 0);
+    sfp_rxlos               : in std_logic_vector(5 downto 0);  
+    fp_in                   : in std_logic_vector(3 downto 0);
+    fp_out                  : out std_logic_vector(3 downto 0);    
        
     fp_led                  : out std_logic_vector(7 downto 0);
     dbg                     : out std_logic_vector(19 downto 0)
@@ -132,6 +137,7 @@ architecture behv of top is
   attribute mark_debug of adc0_axis_tdata: signal is "true"; 
   attribute mark_debug of adc0_axis_tvalid: signal is "true"; 
   attribute mark_debug of pl_reset: signal is "true";
+  attribute mark_debug of fp_led: signal is "true";
 
   --attribute mark_debug of reg_o: signal is "true";
   --attribute mark_debug of reg_i: signal is "true";
@@ -147,6 +153,24 @@ dbg(4) <= rfadc_out_clk;
 dbg(5) <= '0';
 dbg(6) <= rfadc_axis_clk;
 dbg(19 downto 7) <= (others => '0'); 
+
+
+sfp_led(1 downto 0) <= sfp_rxlos(0) & ps_leds(0);
+sfp_led(3 downto 2) <= sfp_rxlos(1) & ps_leds(1);
+sfp_led(5 downto 4) <= sfp_rxlos(2) & ps_leds(2);
+sfp_led(7 downto 6) <= sfp_rxlos(3) & ps_leds(3);
+sfp_led(9 downto 8) <= sfp_rxlos(4) & ps_leds(4);
+sfp_led(11 downto 10) <= sfp_rxlos(5) & ps_leds(5);
+
+fp_out(0) <= fp_led(0); --clk104_pl_clk;
+fp_out(1) <= fp_led(1); --evr_rcvd_clk;
+fp_out(2) <= fp_led(2); --rfadc_axis_clk;  --125 MHz
+fp_out(3) <= fp_led(3); --rfadc_axis_mmcm_clk; -- 166MHz
+
+
+fp_led  <= ps_leds;
+
+
 
 pl_reset <= not pl_resetn;
 
@@ -164,15 +188,12 @@ rfadc_bufg    : BUFG   port map (O => rfadc_axis_clk, I => rfadc_axis_mmcm_clk);
 axisclk_adc: entity work.rfadc_clk_pll  
   port map (
     reset => not pl_resetn, 
-    clk_in1 => rfadc_out_clk, 
+    clk_in1 => rfadc_out_clk,   --125MHz
     clk_out1 => rfadc_axis_mmcm_clk, 
     locked => open  --adc_axis_pll_locked  
 );
 
 
-
-fp_led <= reg_o.fp_leds.val.data;
---fp_led(7 downto 0) <= "01010101"; --gpio_leds_i(5 downto 0);
 
 
 ps_pl: entity work.ps_io
@@ -202,21 +223,6 @@ ps_pl: entity work.ps_io
   );
 
 
-
-
---regs: pl_regs
---  port map (
---    pi_clock => pl_clk0, 
---    pi_reset => not pl_resetn, 
---    -- TOP subordinate memory mapped interface
---    --pi_s_reset => '0', 
---    pi_s_top => m_axi4_m2s, 
---    po_s_top => m_axi4_s2m, 
---    -- to logic interface
---    pi_addrmap => reg_i,  
---    po_addrmap => reg_o
---  );
-
   
   
 rfadc_fifos:  entity work.rf_adc_fifos
@@ -234,60 +240,6 @@ rfadc_fifos:  entity work.rf_adc_fifos
  );  
   
   
-
---adc0_fifo:  entity work.adc_data_rdout
---  port map (
---    sys_clk => pl_clk0, 
---    adc_clk => rfadc_axis_clk,  
---    sys_rst => pl_reset,
---    adc_data => adc0_axis_tdata,
---    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
---    fifo_rdstr => reg_o.adc0fifo_dout.data.swacc, 
---    fifo_dout => reg_i.adc0fifo_dout.data.data,  
---    fifo_rdcnt => reg_i.adc0fifo_wdcnt.data.data, 
---    fifo_rst => reg_o.adcfifo_reset.data.data(0)
--- );
-
---adc1_fifo:  entity work.adc_data_rdout
---  port map (
---    sys_clk => pl_clk0, 
---    adc_clk => rfadc_axis_clk,  
---    sys_rst => pl_reset,
---    adc_data => adc1_axis_tdata,
---    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
---    fifo_rdstr => reg_o.adc1fifo_dout.data.swacc, 
---    fifo_dout => reg_i.adc1fifo_dout.data.data,  
---    fifo_rdcnt => reg_i.adc1fifo_wdcnt.data.data, 
---    fifo_rst => reg_o.adcfifo_reset.data.data(0)
--- );
- 
--- adc2_fifo:  entity work.adc_data_rdout
---  port map (
---    sys_clk => pl_clk0, 
---    adc_clk => rfadc_axis_clk,  
---    sys_rst => pl_reset,
---    adc_data => adc2_axis_tdata,
---    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
---    fifo_rdstr => reg_o.adc2fifo_dout.data.swacc, 
---    fifo_dout => reg_i.adc2fifo_dout.data.data,  
---    fifo_rdcnt => reg_i.adc2fifo_wdcnt.data.data, 
---    fifo_rst => reg_o.adcfifo_reset.data.data(0)
--- );
- 
---adc3_fifo:  entity work.adc_data_rdout
---  port map (
---    sys_clk => pl_clk0, 
---    adc_clk => rfadc_axis_clk,  
---    sys_rst => pl_reset,
---    adc_data => adc3_axis_tdata,
---    fifo_trig => reg_o.adcfifo_trig.data.data(0),  
---    fifo_rdstr => reg_o.adc3fifo_dout.data.swacc, 
---    fifo_dout => reg_i.adc3fifo_dout.data.data,  
---    fifo_rdcnt => reg_i.adc3fifo_wdcnt.data.data, 
---    fifo_rst => reg_o.adcfifo_reset.data.data(0)
--- );
-
-
 
 --embedded event receiver
 evr: entity work.evr_top 
