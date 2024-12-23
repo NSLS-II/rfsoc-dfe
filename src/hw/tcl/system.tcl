@@ -267,14 +267,16 @@ proc create_root_design { parentCell } {
   set usp_rf_data_converter_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:usp_rf_data_converter:2.6 usp_rf_data_converter_0 ]
   set_property -dict [list \
     CONFIG.ADC2_Clock_Dist {1} \
-    CONFIG.ADC2_Outclk_Freq {125.000} \
+    CONFIG.ADC2_Outclk_Freq {150.000} \
     CONFIG.ADC2_PLL_Enable {true} \
     CONFIG.ADC2_Refclk_Freq {240.000} \
+    CONFIG.ADC2_Sampling_Rate {4.8} \
     CONFIG.ADC3_Clock_Dist {0} \
     CONFIG.ADC3_Clock_Source {2} \
-    CONFIG.ADC3_Outclk_Freq {125.000} \
+    CONFIG.ADC3_Outclk_Freq {150.000} \
     CONFIG.ADC3_PLL_Enable {true} \
     CONFIG.ADC3_Refclk_Freq {240.000} \
+    CONFIG.ADC3_Sampling_Rate {4.8} \
     CONFIG.ADC_Data_Width20 {12} \
     CONFIG.ADC_Data_Width22 {12} \
     CONFIG.ADC_Data_Width30 {12} \
